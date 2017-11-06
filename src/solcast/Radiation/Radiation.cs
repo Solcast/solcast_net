@@ -18,7 +18,29 @@ namespace solcast
                     var response = client.Get(request);
                     return response;
                 }            
-            }              
+            }
+            public static GetRadiationEstimatedActualsResponse EstimatedActuals(Location position, string apiKey = null)
+            {
+                using (var client = new JsonServiceClient(API.Url))
+                {
+                    client.Timeout = API.Timeout;
+                    client.Headers.Add(HttpHeaders.Authorization, $"Bearer {API.Key(apiKey)}");
+                    var request = position.ToRadiationEstimatedActuals();
+                    var response = client.Get(request);
+                    return response;
+                }            
+            }
+            public static GetLatestRadiationEstimatedActualsResponse LatestEstimatedActuals(Location position, string apiKey = null)
+            {
+                using (var client = new JsonServiceClient(API.Url))
+                {
+                    client.Timeout = API.Timeout;
+                    client.Headers.Add(HttpHeaders.Authorization, $"Bearer {API.Key(apiKey)}");
+                    var request = position.ToLatestRadiationEstimatedActuals();
+                    var response = client.Get(request);
+                    return response;
+                }            
+            }            
         }
 
         public static async Task<GetRadiationForecastsResponse> Forecast(Location position, string apiKey = null)
@@ -30,6 +52,26 @@ namespace solcast
                 var response = await client.GetAsync(request);
                 return response;
             }            
-        }          
+        }
+        public static async Task<GetRadiationEstimatedActualsResponse> EstimatedActuals(Location position, string apiKey = null)
+        {
+            using (var client = new JsonHttpClient(API.Url))
+            {
+                var request = position.ToRadiationEstimatedActuals();
+                client.Headers.Add(HttpHeaders.Authorization, $"Bearer {API.Key(apiKey)}");
+                var response = await client.GetAsync(request);
+                return response;
+            }              
+        }
+        public static async Task<GetLatestRadiationEstimatedActualsResponse> LatestEstimatedActuals(Location position, string apiKey = null)
+        {
+            using (var client = new JsonHttpClient(API.Url))
+            {
+                var request = position.ToLatestRadiationEstimatedActuals();
+                client.Headers.Add(HttpHeaders.Authorization, $"Bearer {API.Key(apiKey)}");
+                var response = await client.GetAsync(request);
+                return response;
+            }
+        }                
     }
 }
