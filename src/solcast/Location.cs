@@ -11,5 +11,5 @@ namespace solcast
         public Dictionary<string, object> Options { get; set; }
         public object Tag { get; set; }
         public string Name { get; set; }
-    }
+    }    
 }
