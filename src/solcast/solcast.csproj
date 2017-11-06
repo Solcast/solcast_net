@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RootNamespace>solcast</RootNamespace>
+    <AssemblyName>solcast</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="ServiceStack.Client.Core" Version="1.0.44" />
+    <PackageReference Include="ServiceStack.HttpClient.Core" Version="1.0.44" />
+  </ItemGroup>
+</Project>

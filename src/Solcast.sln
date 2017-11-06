@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cli", "cli\cli.csproj", "{6EEB62EF-498C-48C3-9218-AEFEC7F53838}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "solcast", "solcast\solcast.csproj", "{135D06D7-D22B-4B27-93C2-65CF70AB34D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "solcast.tests", "..\tests\solcast.tests.csproj", "{2D23507C-F15A-4F9A-94D7-2FC6464F36A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6EEB62EF-498C-48C3-9218-AEFEC7F53838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EEB62EF-498C-48C3-9218-AEFEC7F53838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EEB62EF-498C-48C3-9218-AEFEC7F53838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EEB62EF-498C-48C3-9218-AEFEC7F53838}.Release|Any CPU.Build.0 = Release|Any CPU
+		{135D06D7-D22B-4B27-93C2-65CF70AB34D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{135D06D7-D22B-4B27-93C2-65CF70AB34D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{135D06D7-D22B-4B27-93C2-65CF70AB34D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{135D06D7-D22B-4B27-93C2-65CF70AB34D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D23507C-F15A-4F9A-94D7-2FC6464F36A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D23507C-F15A-4F9A-94D7-2FC6464F36A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D23507C-F15A-4F9A-94D7-2FC6464F36A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D23507C-F15A-4F9A-94D7-2FC6464F36A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14E28C3C-573C-4C20-BB68-52826256CA8F}
+	EndGlobalSection
+EndGlobal
