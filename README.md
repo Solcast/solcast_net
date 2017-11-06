@@ -1,3 +1,6 @@
+# WORK IN PROGRESS - Currently undergoing changes and updates and once ready for use will be available via NuGet
+
+
 Solcast API
 ==========
 
