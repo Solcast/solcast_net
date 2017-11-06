@@ -1,11 +1,29 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>solcast</RootNamespace>
     <AssemblyName>solcast</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>Solcast</Company>
+    <Product>Solcast API client library</Product>
+    <Version>0.0.1</Version>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Description>Provides a client wrapper library for the Solcast API (https://solcast.com.au/)
+
+The Solcast API is a solar radiation and solar energy forecasting system that is designed to be easy to use and to integrate with other systems that are looking for live solar radiation and solar PV energy output data</Description>
+    <Copyright>Solcast 2017</Copyright>
+    <PackageProjectUrl>https://solcast.com.au/api/faq/</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/Solcast/solcast_net/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://avatars1.githubusercontent.com/u/24580859?s=200&amp;v=4</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Solcast/solcast_net</RepositoryUrl>
+    <AssemblyVersion>0.0.0.1</AssemblyVersion>
+    <FileVersion>0.0.0.1</FileVersion>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="ServiceStack.Client.Core" Version="1.0.44" />
     <PackageReference Include="ServiceStack.HttpClient.Core" Version="1.0.44" />
   </ItemGroup>
+
 </Project>
