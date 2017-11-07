@@ -11,7 +11,7 @@ namespace solcast.tests
         [Fact]
         public void TestPowerForecast()
         {
-            var location = LocationExtensions.Random();
+            var location = Places.Sydney();
             Debug.WriteLine(location.Dump());            
             var testTask = new List<Task>
             {
@@ -28,7 +28,7 @@ namespace solcast.tests
         [Fact]
         public void TestPowerEstimatedActuals()
         {
-            var location = LocationExtensions.Random();
+            var location = Places.Sydney();
             Debug.WriteLine(location.Dump());            
             var testTask = new List<Task>
             {
@@ -45,7 +45,7 @@ namespace solcast.tests
         [Fact]
         public void TestPowerLatestEstimatedActuals()
         {
-            var location = LocationExtensions.Random();
+            var location = Places.Sydney();
             Debug.WriteLine(location.Dump());            
             var testTask = new List<Task>
             {

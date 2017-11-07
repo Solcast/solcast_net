@@ -9,7 +9,7 @@ namespace solcast.tests
         [Fact]
         public void TestRadiationForecast()
         {
-            var location = LocationExtensions.Random();
+            var location = Places.Sydney();
             var testTask = new List<Task>
             {
                 Task.Run(async () =>
@@ -25,7 +25,7 @@ namespace solcast.tests
         [Fact]
         public void TestRadiationEstimatedActuals()
         {
-            var location = LocationExtensions.Random();
+            var location = Places.Sydney();
             var testTask = new List<Task>
             {
                 Task.Run(async () =>
@@ -41,7 +41,7 @@ namespace solcast.tests
         [Fact]
         public void TestRadiationLatestEstimatedActuals()
         {
-            var location = LocationExtensions.Random();
+            var location = Places.Sydney();
             var testTask = new List<Task>
             {
                 Task.Run(async () =>

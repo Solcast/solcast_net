@@ -25,6 +25,8 @@ namespace solcast
                 : TimeZoneInfo.Local.StandardName;
             return TimeZoneInfo.FindSystemTimeZoneById(timeZone);
         }
+
+              
         
         public static Location Random()
         {

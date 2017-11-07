@@ -67,6 +67,11 @@ namespace solcast
                 client.Timeout = API.Timeout;
                 client.Headers.Add(HttpHeaders.Authorization, $"Bearer {API.Key(apiKey)}");
                 var request = position.ToPowerForecasts();
+                if (Debugger.IsAttached)
+                {
+                    Debug.WriteLine(request.ToGetUrl());
+                    Console.WriteLine(request.ToGetUrl());
+                }                
                 var response = await client.GetAsync(request);
                 return response;
             }
@@ -77,6 +82,11 @@ namespace solcast
             {
                 var request = position.ToPowerEstimatedActuals();
                 client.Headers.Add(HttpHeaders.Authorization, $"Bearer {API.Key(apiKey)}");
+                if (Debugger.IsAttached)
+                {
+                    Debug.WriteLine(request.ToGetUrl());
+                    Console.WriteLine(request.ToGetUrl());
+                }                
                 var response = await client.GetAsync(request);
                 return response;
             }              
@@ -87,6 +97,11 @@ namespace solcast
             {
                 var request = position.ToLatestPowerEstimatedActuals();
                 client.Headers.Add(HttpHeaders.Authorization, $"Bearer {API.Key(apiKey)}");
+                if (Debugger.IsAttached)
+                {
+                    Debug.WriteLine(request.ToGetUrl());
+                    Console.WriteLine(request.ToGetUrl());
+                }                
                 var response = await client.GetAsync(request);
                 return response;
             }
