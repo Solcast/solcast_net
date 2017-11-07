@@ -86,7 +86,7 @@ Los Angeles, USA | 34.052235 | -118.243683
  * Add something awesome
  * Create a pull request
 
-### [Sample Program](src/cli/Program.cs) 
+### [Sample Program](example/cli/Program.cs) 
 
 Example [CLI](https://en.wikipedia.org/wiki/Command-line_interface) provided for reference
 
@@ -116,20 +116,18 @@ var key = Environment.GetEnvironmentVariable("SOLCAST_API_KEY");
 ```csharp
 using solcast;
 
-var getForecast = Power.Forecast( new Location
+var response = await Power.ForecastAsync(new Location
 {
 	Latitude = 32,
 	Longitude = -97
 });
-getForecast.Wait();
-var response = getForecast.Result;
 ```
 
 #### C# sync
 ```csharp
 using solcast;
 
-var response = sync.Power.Forecast( new Location
+var response = Power.Forecast(new Location
 {
 	Latitude = 32,
 	Longitude = -97
