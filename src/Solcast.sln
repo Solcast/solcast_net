@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solcast.Tests", "..\tests\zSolcast.Tests.csproj", "{2D23507C-F15A-4F9A-94D7-2FC6464F36A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solcast.Tests", "..\tests\Solcast.Tests.csproj", "{2D23507C-F15A-4F9A-94D7-2FC6464F36A1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solcast", "Solcast\zSolcast.csproj", "{D9E96B5C-33CB-4461-9811-1AF771880141}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solcast", "solcast\Solcast.csproj", "{D9E96B5C-33CB-4461-9811-1AF771880141}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cli", "..\example\cli\Cli.csproj", "{DC2C4E4F-9F77-4E12-8D53-8ACD1F3F61E4}"
 EndProject
