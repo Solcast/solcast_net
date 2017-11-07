@@ -1,5 +1,7 @@
 # WORK IN PROGRESS - Currently undergoing changes and updates and once ready for use will be available via NuGet
 
+[![Build Status](https://travis-ci.org/Solcast/solcast_net.svg?branch=master)](https://travis-ci.org/Solcast/solcast_net)
+
 # Solcast .NET API Client library
 
 .NET client library for querying the Solcast API async/sync
