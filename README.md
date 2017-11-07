@@ -107,9 +107,7 @@ Accessible through process environment variable directly or with helper API meth
 var key = API.Key();
 ```
 
-OR
-
-**IF YOU MUST**
+**OR IF YOU MUST**
 ```csharp
 var key = Environment.GetEnvironmentVariable("SOLCAST_API_KEY");
 ```
