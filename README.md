@@ -91,15 +91,23 @@ Los Angeles, USA | 34.052235 | -118.243683
 #### NOTE: 
 You can use standard environment variables to hold your API key and not need to pass the optional `apiKey` to the current methods
 
-Environment variable names
+Environment variable name if you care to work with it directly
 ```
 SOLCAST_API_KEY
 ```
 
 Accessible through process environment variable directly or with helper API method.
+
+**RECOMMENDED**
+```csharp
+var key = API.Key();
 ```
-Environment.GetEnvironmentVariable("SOLCAST_API_KEY")
-API.Key()
+
+OR
+
+**IF YOU MUST**
+```csharp
+var key = Environment.GetEnvironmentVariable("SOLCAST_API_KEY");
 ```
 
 #### C# async
