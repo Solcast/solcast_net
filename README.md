@@ -1,6 +1,7 @@
 # WORK IN PROGRESS - Currently undergoing changes and updates and once ready for use will be available via NuGet
 
 [![Build Status](https://travis-ci.org/Solcast/solcast_net.svg?branch=master)](https://travis-ci.org/Solcast/solcast_net)
+[![Join the chat at https://gitter.im/Solcast/Lobby](https://badges.gitter.im/Solcast/Lobby.svg)](https://gitter.im/Solcast/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # Solcast .NET API Client library
 
@@ -78,7 +79,7 @@ Los Angeles, USA | 34.052235 | -118.243683
 ### Need help?
 * [Documentation](https://solcast.com.au/api/docs/)
 * [Forums](https://forums.solcast.com.au)
-* [Gitter]()
+* [Gitter](https://gitter.im/Solcast/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 
 ### How to contribute
  * Fork the repository
