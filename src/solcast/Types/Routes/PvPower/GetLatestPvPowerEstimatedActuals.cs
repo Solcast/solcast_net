@@ -1,6 +1,6 @@
 ﻿using ServiceStack;
 
-namespace solcast.types
+namespace Solcast.Types
 {
     [Route("/pv_power/estimated_actuals/latest", "GET")]
     public class GetLatestPvPowerEstimatedActuals

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using ServiceStack;
 
-namespace solcast
+namespace Solcast
 {
     public static class Extensions
     {

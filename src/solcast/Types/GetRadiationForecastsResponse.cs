@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using ServiceStack;
 
-namespace solcast.types
+namespace Solcast.Types
 {
     [DataContract]
     public class GetRadiationForecastsResponse

@@ -1,6 +1,6 @@
-﻿using solcast.types;
+﻿using Solcast.Types;
 
-namespace solcast
+namespace Solcast
 {
     public static class RadiationExtensions
     {

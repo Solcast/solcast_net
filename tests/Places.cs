@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace solcast.tests
+namespace Solcast.Tests
 {
     public static class Places
     {

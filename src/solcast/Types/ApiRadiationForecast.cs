@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace solcast.types
+namespace Solcast.Types
 {
     [DataContract]
     public class ApiRadiationForecast

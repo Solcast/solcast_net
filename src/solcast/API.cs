@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace solcast
+namespace Solcast
 {
     public static class API
     {
@@ -15,7 +15,7 @@ namespace solcast
         }       
         
         private static TimeSpan _timeout;
-        public const string Url = @"https://api.solcast.com.au";
+        public const string Url = @"https://api.Solcast.com.au";
 
         public static TimeSpan Timeout
         {

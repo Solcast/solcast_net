@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-dotnet restore ./tests/solcast.tests.csproj
-dotnet build ./tests/solcast.tests.csproj
-dotnet test ./tests/solcast.tests.csproj
+dotnet restore ./tests/Solcast.Tests.csproj
+dotnet build ./tests/Solcast.Tests.csproj
+dotnet test ./tests/Solcast.Tests.csproj

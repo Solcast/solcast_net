@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using solcast.types;
+using System.Threading.Tasks;
+using Solcast.Types;
 using ServiceStack.Text;
+using Solcast;
 
-namespace solcast.cli
+namespace Cli
 {
     public class Program
     {
@@ -17,17 +20,22 @@ namespace solcast.cli
             };
             try
             {
-                Console.WriteLine($"SOLCAST_API_KEY = {API.Key()}");
+                Console.WriteLine($"Solcast_API_KEY = {API.Key()}");
                 Console.Write($"Current API timeout setting = {API.Timeout}");
 
                 // Sync call
-                //var response = sync.Power.Forecast(location);
+                //var response = Power.Forecast(location);
 
-                var getForecast = Power.Forecast(location);
-                getForecast.Wait();
-                var response = getForecast.Result;
-                ValidateResponse(response);
-                WriteToDisplay(response);
+                var tasks = new List<Task>
+                {
+                    Task.Run(async () =>
+                    {
+                        var response = await Power.ForecastAsync(location);
+                        ValidateResponse(response);
+                        WriteToDisplay(response);
+                    })
+                };
+                Task.WaitAll(tasks.ToArray());
             }
             catch (Exception e)
             {

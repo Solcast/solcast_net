@@ -2,7 +2,7 @@ using System.Diagnostics;
 using ServiceStack.Text;
 using Xunit;
 
-namespace solcast.tests
+namespace Solcast.Tests
 {
     public class PowerTestSync
     {
@@ -11,7 +11,7 @@ namespace solcast.tests
         {
             var location = Places.Sydney();
             Debug.WriteLine(location.Dump());
-            var results = sync.Power.Forecast(location);
+            var results = Power.Forecast(location);
             Assert.NotNull(results);
             Assert.NotNull(results.Forecasts);
             Assert.True(results.Forecasts.Count == ForecastDefault.Count);
@@ -21,7 +21,7 @@ namespace solcast.tests
         {
             var location = Places.Sydney();
             Debug.WriteLine(location.Dump());
-            var results = sync.Power.EstimatedActuals(location);
+            var results = Power.EstimatedActuals(location);
             Assert.NotNull(results);
             Assert.NotNull(results.EstimatedActuals);            
         }
@@ -30,7 +30,7 @@ namespace solcast.tests
         {
             var location = Places.Sydney();
             Debug.WriteLine(location.Dump());
-            var results = sync.Power.LatestEstimatedActuals(location);
+            var results = Power.LatestEstimatedActuals(location);
             Assert.NotNull(results);
             Assert.NotNull(results.EstimatedActuals);            
         }        

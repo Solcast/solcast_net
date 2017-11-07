@@ -1,4 +1,4 @@
-﻿namespace solcast.types
+﻿namespace Solcast.Types
 {
     public class RegionCollection
     {

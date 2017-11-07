@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace solcast
+namespace Solcast
 {
     public static class LocationExtensions
     {

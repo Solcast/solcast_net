@@ -1,6 +1,6 @@
 ﻿using ServiceStack;
 
-namespace solcast.types
+namespace Solcast.Types
 {
     [Route("/pv_power/collections/{CollectionId}/aggregations/{AggregationId}/forecasts", "GET")]
     public class GetAggregationPowerForecast

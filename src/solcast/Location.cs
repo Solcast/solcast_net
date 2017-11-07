@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace solcast
+namespace Solcast
 {
     public class Location
     {

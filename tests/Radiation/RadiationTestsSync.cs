@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace solcast.tests
+namespace Solcast.Tests
 {
     public class RadiationTestsSync
     {
@@ -8,7 +8,7 @@ namespace solcast.tests
         public void TestRadiationForecast()
         {
             var location = Places.Sydney();
-            var results = sync.Radiation.Forecast(location);
+            var results = Radiation.Forecast(location);
             Assert.NotNull(results);
             Assert.NotNull(results.Forecasts);
             Assert.True(results.Forecasts.Count == ForecastDefault.Count);
@@ -17,7 +17,7 @@ namespace solcast.tests
         public void TestRadiationEstimatedActuals()
         {
             var location = Places.Sydney();
-            var results = sync.Radiation.EstimatedActuals(location);
+            var results = Radiation.EstimatedActuals(location);
             Assert.NotNull(results);
             Assert.NotNull(results.EstimatedActuals);
             
@@ -26,7 +26,7 @@ namespace solcast.tests
         public void TestRadiationLatestEstimatedActuals()
         {
             var location = Places.Sydney();
-            var results = sync.Radiation.LatestEstimatedActuals(location);
+            var results = Radiation.LatestEstimatedActuals(location);
             Assert.NotNull(results);
             Assert.NotNull(results.EstimatedActuals);            
         }                    

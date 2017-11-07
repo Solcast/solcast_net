@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ServiceStack;
 
-namespace solcast.types
+namespace Solcast.Types
 {
     public class GetAggregationPowerForecastResponse
     {

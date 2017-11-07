@@ -4,12 +4,10 @@ using System.Threading.Tasks;
 using ServiceStack.Text;
 using Xunit;
 
-namespace solcast.tests
+namespace Solcast.Tests
 {
     public class PowerTests
     {
-
-
         [Fact]
         public void TestPowerForecast()
         {
@@ -19,7 +17,7 @@ namespace solcast.tests
             {
                 Task.Run(async () =>
                 {
-                    var results = await Power.Forecast(location);
+                    var results = await Power.ForecastAsync(location);
                     Assert.NotNull(results);
                     Assert.NotNull(results.Forecasts);
                     Assert.True(results.Forecasts.Count == ForecastDefault.Count);
@@ -36,7 +34,7 @@ namespace solcast.tests
             {
                 Task.Run(async () =>
                 {
-                    var results = await Power.EstimatedActuals(location);
+                    var results = await Power.EstimatedActualsAsync(location);
                     Assert.NotNull(results);
                     Assert.NotNull(results.EstimatedActuals);                    
                 })
@@ -52,7 +50,7 @@ namespace solcast.tests
             {
                 Task.Run(async () =>
                 {
-                    var results = await Power.LatestEstimatedActuals(location);
+                    var results = await Power.LatestEstimatedActualsAsync(location);
                     Assert.NotNull(results);
                     Assert.NotNull(results.EstimatedActuals);
                     

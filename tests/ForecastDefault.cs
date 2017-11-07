@@ -1,4 +1,4 @@
-namespace solcast.tests
+namespace Solcast.Tests
 {
     public static class ForecastDefault
     {

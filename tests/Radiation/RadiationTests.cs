@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace solcast.tests
+namespace Solcast.Tests
 {
     public class RadiationTests
     {
@@ -14,7 +14,7 @@ namespace solcast.tests
             {
                 Task.Run(async () =>
                 {
-                    var results = await Radiation.Forecast(location);
+                    var results = await Radiation.ForecastAsync(location);
                     Assert.NotNull(results);
                     Assert.NotNull(results.Forecasts);
                     Assert.True(results.Forecasts.Count == ForecastDefault.Count);
@@ -30,7 +30,7 @@ namespace solcast.tests
             {
                 Task.Run(async () =>
                 {
-                    var results = await Radiation.EstimatedActuals(location);
+                    var results = await Radiation.EstimatedActualsAsync(location);
                     Assert.NotNull(results);
                     Assert.NotNull(results.EstimatedActuals);                 
                 })
@@ -45,7 +45,7 @@ namespace solcast.tests
             {
                 Task.Run(async () =>
                 {
-                    var results = await Radiation.LatestEstimatedActuals(location);
+                    var results = await Radiation.LatestEstimatedActualsAsync(location);
                     Assert.NotNull(results);
                     Assert.NotNull(results.EstimatedActuals);
                     
