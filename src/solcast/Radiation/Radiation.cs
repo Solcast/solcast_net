@@ -16,12 +16,7 @@ namespace solcast
                 {
                     client.Timeout = API.Timeout;
                     client.Headers.Add(HttpHeaders.Authorization, $"Bearer {API.Key(apiKey)}");
-                    var request = position.ToRadiationForecasts();
-                    if (Debugger.IsAttached)
-                    {
-                        Debug.WriteLine(request.ToGetUrl());
-                        Console.WriteLine(request.ToGetUrl());
-                    }                    
+                    var request = position.ToRadiationForecasts();         
                     var response = client.Get(request);
                     return response;
                 }            
@@ -32,12 +27,7 @@ namespace solcast
                 {
                     client.Timeout = API.Timeout;
                     client.Headers.Add(HttpHeaders.Authorization, $"Bearer {API.Key(apiKey)}");
-                    var request = position.ToRadiationEstimatedActuals();
-                    if (Debugger.IsAttached)
-                    {
-                        Debug.WriteLine(request.ToGetUrl());
-                        Console.WriteLine(request.ToGetUrl());
-                    }                    
+                    var request = position.ToRadiationEstimatedActuals();               
                     var response = client.Get(request);
                     return response;
                 }            
@@ -48,12 +38,7 @@ namespace solcast
                 {
                     client.Timeout = API.Timeout;
                     client.Headers.Add(HttpHeaders.Authorization, $"Bearer {API.Key(apiKey)}");
-                    var request = position.ToLatestRadiationEstimatedActuals();
-                    if (Debugger.IsAttached)
-                    {
-                        Debug.WriteLine(request.ToGetUrl());
-                        Console.WriteLine(request.ToGetUrl());
-                    }                    
+                    var request = position.ToLatestRadiationEstimatedActuals();              
                     var response = client.Get(request);
                     return response;
                 }            
@@ -64,13 +49,8 @@ namespace solcast
         {
             using (var client = new JsonHttpClient(API.Url))
             {
-                var request = position.ToRadiationForecasts();
                 client.Headers.Add(HttpHeaders.Authorization, $"Bearer {API.Key(apiKey)}");
-                if (Debugger.IsAttached)
-                {
-                    Debug.WriteLine(request.ToGetUrl());
-                    Console.WriteLine(request.ToGetUrl());
-                }
+                var request = position.ToRadiationForecasts();                
                 var response = await client.GetAsync(request);
                 return response;
             }            
@@ -79,13 +59,8 @@ namespace solcast
         {
             using (var client = new JsonHttpClient(API.Url))
             {
-                var request = position.ToRadiationEstimatedActuals();
                 client.Headers.Add(HttpHeaders.Authorization, $"Bearer {API.Key(apiKey)}");
-                if (Debugger.IsAttached)
-                {
-                    Debug.WriteLine(request.ToGetUrl());
-                    Console.WriteLine(request.ToGetUrl());
-                }
+                var request = position.ToRadiationEstimatedActuals();                
                 var response = await client.GetAsync(request);
                 return response;
             }              
@@ -94,13 +69,8 @@ namespace solcast
         {
             using (var client = new JsonHttpClient(API.Url))
             {
-                var request = position.ToLatestRadiationEstimatedActuals();
                 client.Headers.Add(HttpHeaders.Authorization, $"Bearer {API.Key(apiKey)}");
-                if (Debugger.IsAttached)
-                {
-                    Debug.WriteLine(request.ToGetUrl());
-                    Console.WriteLine(request.ToGetUrl());
-                }
+                var request = position.ToLatestRadiationEstimatedActuals();                
                 var response = await client.GetAsync(request);
                 return response;
             }
