@@ -130,7 +130,7 @@ var response = sync.Power.Forecast( new Location
 ### Need help?
 * [Documentation](https://solcast.com.au/api/docs/)
 * [Forums](https://forums.solcast.com.au)
-* [Gitter]()
+* [Gitter](https://gitter.im/Solcast/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 
 
 License
