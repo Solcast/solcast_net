@@ -4,7 +4,7 @@ namespace solcast
 {
     public static class API
     {
-        public static string Key(string apiKey)
+        public static string Key(string apiKey = null)
         {
             apiKey = apiKey ?? User.Key;
             if (string.IsNullOrEmpty(apiKey))

@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using solcast.types;
+using ServiceStack.Text;
 
 namespace solcast.cli
 {
@@ -13,15 +17,46 @@ namespace solcast.cli
             };
             try
             {
-                var getTask = Power.Forecast(location);
-                getTask.Wait();
-                Console.WriteLine(getTask.Result);
+                Console.WriteLine($"SOLCAST_API_KEY = {API.Key()}");
+                Console.Write($"Current API timeout setting = {API.Timeout}");
+
+                // Sync call
+                //var response = sync.Power.Forecast(location);
+
+                var getForecast = Power.Forecast(location);
+                getForecast.Wait();
+                var response = getForecast.Result;
+                ValidateResponse(response);
+                WriteToDisplay(response);
             }
             catch (Exception e)
             {
+                if (Debugger.IsAttached) { Debugger.Break(); }
                 Console.WriteLine(e);
-                throw;
             }
+        }
+
+        private static void WriteToDisplay(GetPvPowerForecastsResponse response)
+        {
+            Console.WriteLine($"Total Forecast Intervals {response.Forecasts.Count}");
+            foreach (var currentForecast in response.Forecasts.Select((row, index) => new {index, row}))
+            {
+                Console.WriteLine($"{currentForecast.index} - {currentForecast.row.Dump()}");
+            }
+        }
+
+        private static void ValidateResponse(GetPvPowerForecastsResponse forecast)
+        {
+            if (forecast.ResponseStatus?.Errors == null || !forecast.ResponseStatus.Errors.Any())
+            {
+                return;
+            }            
+            foreach (var error in forecast.ResponseStatus.Errors)
+            {
+                if (Debugger.IsAttached) { Debugger.Break(); }             
+                Console.WriteLine($"Issue: {error.Dump()}");
+            }
+            throw new ApplicationException("Forecast request failed");
         }
     }
 }

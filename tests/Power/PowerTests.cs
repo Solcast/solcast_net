@@ -8,6 +8,8 @@ namespace solcast.tests
 {
     public class PowerTests
     {
+
+
         [Fact]
         public void TestPowerForecast()
         {
@@ -20,7 +22,7 @@ namespace solcast.tests
                     var results = await Power.Forecast(location);
                     Assert.NotNull(results);
                     Assert.NotNull(results.Forecasts);
-                    Assert.True(results.Forecasts.Count == 336);
+                    Assert.True(results.Forecasts.Count == ForecastDefault.Count);
                 })
             };
             Task.WaitAll(testTask.ToArray());
@@ -36,8 +38,7 @@ namespace solcast.tests
                 {
                     var results = await Power.EstimatedActuals(location);
                     Assert.NotNull(results);
-                    Assert.NotNull(results.EstimatedActuals);
-                    //Assert.True(results.EstimatedActuals.Count == 336);
+                    Assert.NotNull(results.EstimatedActuals);                    
                 })
             };
             Task.WaitAll(testTask.ToArray());
@@ -54,7 +55,7 @@ namespace solcast.tests
                     var results = await Power.LatestEstimatedActuals(location);
                     Assert.NotNull(results);
                     Assert.NotNull(results.EstimatedActuals);
-                    //Assert.True(results.EstimatedActuals.Count == 336);
+                    
                 })
             };
             Task.WaitAll(testTask.ToArray());

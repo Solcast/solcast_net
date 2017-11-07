@@ -17,7 +17,7 @@ namespace solcast.tests
                     var results = await Radiation.Forecast(location);
                     Assert.NotNull(results);
                     Assert.NotNull(results.Forecasts);
-                    Assert.True(results.Forecasts.Count == 336);
+                    Assert.True(results.Forecasts.Count == ForecastDefault.Count);
                 })
             };
             Task.WaitAll(testTask.ToArray());
@@ -32,8 +32,7 @@ namespace solcast.tests
                 {
                     var results = await Radiation.EstimatedActuals(location);
                     Assert.NotNull(results);
-                    Assert.NotNull(results.EstimatedActuals);
-                    //Assert.True(results.EstimatedActuals.Count == 336);
+                    Assert.NotNull(results.EstimatedActuals);                 
                 })
             };
             Task.WaitAll(testTask.ToArray());
@@ -49,7 +48,7 @@ namespace solcast.tests
                     var results = await Radiation.LatestEstimatedActuals(location);
                     Assert.NotNull(results);
                     Assert.NotNull(results.EstimatedActuals);
-                    //Assert.True(results.EstimatedActuals.Count == 336);
+                    
                 })
             };
             Task.WaitAll(testTask.ToArray());

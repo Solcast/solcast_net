@@ -8,28 +8,27 @@ namespace solcast.tests
         public void TestRadiationForecast()
         {
             var location = Places.Sydney();
-            var results = Radiation.Sync.Forecast(location);
+            var results = sync.Radiation.Forecast(location);
             Assert.NotNull(results);
             Assert.NotNull(results.Forecasts);
-            Assert.True(results.Forecasts.Count == 336);
+            Assert.True(results.Forecasts.Count == ForecastDefault.Count);
         }        
         [Fact]
         public void TestRadiationEstimatedActuals()
         {
             var location = Places.Sydney();
-            var results = Radiation.Sync.EstimatedActuals(location);
+            var results = sync.Radiation.EstimatedActuals(location);
             Assert.NotNull(results);
             Assert.NotNull(results.EstimatedActuals);
-            //Assert.True(results.EstimatedActuals.Count == 336);
+            
         }  
         [Fact]
         public void TestRadiationLatestEstimatedActuals()
         {
             var location = Places.Sydney();
-            var results = Radiation.Sync.LatestEstimatedActuals(location);
+            var results = sync.Radiation.LatestEstimatedActuals(location);
             Assert.NotNull(results);
-            Assert.NotNull(results.EstimatedActuals);
-            //Assert.True(results.EstimatedActuals.Count == 336);
+            Assert.NotNull(results.EstimatedActuals);            
         }                    
     }
 }

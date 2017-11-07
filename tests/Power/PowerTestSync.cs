@@ -11,30 +11,28 @@ namespace solcast.tests
         {
             var location = Places.Sydney();
             Debug.WriteLine(location.Dump());
-            var results = Power.Sync.Forecast(location);
+            var results = sync.Power.Forecast(location);
             Assert.NotNull(results);
             Assert.NotNull(results.Forecasts);
-            Assert.True(results.Forecasts.Count == 336);
+            Assert.True(results.Forecasts.Count == ForecastDefault.Count);
         }
         [Fact]
         public void TestPowerEstimatedActuals()
         {
             var location = Places.Sydney();
             Debug.WriteLine(location.Dump());
-            var results = Power.Sync.EstimatedActuals(location);
+            var results = sync.Power.EstimatedActuals(location);
             Assert.NotNull(results);
-            Assert.NotNull(results.EstimatedActuals);
-            //Assert.True(results.EstimatedActuals.Count == 336);
+            Assert.NotNull(results.EstimatedActuals);            
         }
         [Fact]
         public void TestPowerLatestEstimatedActuals()
         {
             var location = Places.Sydney();
             Debug.WriteLine(location.Dump());
-            var results = Power.Sync.LatestEstimatedActuals(location);
+            var results = sync.Power.LatestEstimatedActuals(location);
             Assert.NotNull(results);
-            Assert.NotNull(results.EstimatedActuals);
-            //Assert.True(results.EstimatedActuals.Count == 336);
+            Assert.NotNull(results.EstimatedActuals);            
         }        
     }
 }
