@@ -88,6 +88,8 @@ Los Angeles, USA | 34.052235 | -118.243683
 
 ### Examples
 
+**Example** [CLI](https://en.wikipedia.org/wiki/Command-line_interface) provided for reference [Sample CLI Program](/src/cli) 
+
 #### NOTE: 
 You can use standard environment variables to hold your API key and not need to pass the optional `apiKey` to the current methods
 
