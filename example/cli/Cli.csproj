@@ -7,6 +7,6 @@
     <AssemblyName>Cli</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Solcast\Solcast.csproj" />
+    <ProjectReference Include="..\..\src\Solcast\zSolcast.csproj" />
   </ItemGroup>
 </Project>
