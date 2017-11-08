@@ -1,0 +1,26 @@
+version: '0.0.{build}'
+configuration:
+- Debug
+- Release
+platform: Any CPU
+# Build worker image (VM template)
+image: Visual Studio 2017
+environment:
+  # Don't report back to the mothership
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+init:
+- ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
+before_build:
+- appveyor-retry dotnet restore "src\Solcast.sln" -v Minimal
+- appveyor-retry dotnet restore "tests\Solcast.Tests.csproj" -v Minimal
+build_script:
+- dotnet build "src\solcast\Solcast.csproj" -c %CONFIGURATION% --no-dependencies --version-suffix %LABEL%
+- dotnet build "tests\Solcast.Tests.csproj" -c %CONFIGURATION% --no-dependencies --version-suffix %LABEL%
+after_build:
+- dotnet pack "src\solcast\Solcast.csproj" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o "..\..\NuGet\Solcast"
+test_script:
+- dotnet test "tests\Solcast.Tests.csproj" -c %CONFIGURATION%
+artifacts:
+- path: "..\..\NuGet\Solcast\**\*.*"
+cache:
+- '%USERPROFILE%\.nuget\packages'
