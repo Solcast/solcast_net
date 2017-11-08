@@ -21,6 +21,6 @@ after_build:
 test_script:
 - dotnet test "tests\Solcast.Tests.csproj" -c %CONFIGURATION%
 artifacts:
-- path: "..\..\NuGet\Solcast\**\*.*"
+- path: '..\..\NuGet\Solcast\**\*.*'
 cache:
 - '%USERPROFILE%\.nuget\packages'
