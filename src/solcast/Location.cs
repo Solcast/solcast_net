@@ -11,5 +11,16 @@ namespace Solcast
         public Dictionary<string, object> Options { get; set; }
         public object Tag { get; set; }
         public string Name { get; set; }
-    }    
+    }
+
+    public class PvSystem
+    {
+        public decimal Capacity { get; set; }
+        public decimal? Tilt { get; set; }
+        public decimal? LossFactor { get; set; }
+        /// <summary>
+        /// Needs to be converted to yyyMMdd on request
+        /// </summary>
+        public DateTime? InstallDate { get; set; } 
+    }
 }
