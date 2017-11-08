@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Solcast.Types;
-using ServiceStack.Text;
 using Solcast;
 
 namespace Cli
@@ -23,48 +20,39 @@ namespace Cli
                 Console.WriteLine($"Solcast_API_KEY = {API.Key()}");
                 Console.Write($"Current API timeout setting = {API.Timeout}");
 
-                // Sync call
-                //var response = Power.Forecast(location);
+                var syncResponse = PowerForecast(location);                
+                syncResponse.Validate().ToConsole();                
 
-                var tasks = new List<Task>
+                Task.Run(async () =>
                 {
-                    Task.Run(async () =>
-                    {
-                        var response = await Power.ForecastAsync(location);
-                        ValidateResponse(response);
-                        WriteToDisplay(response);
-                    })
-                };
-                Task.WaitAll(tasks.ToArray());
+                    var result = await PowerForecastAsync(location);
+                    result.Validate().ToConsole();
+                }).Wait();
             }
             catch (Exception e)
             {
-                if (Debugger.IsAttached) { Debugger.Break(); }
+                if (Debugger.IsAttached)
+                {
+                    Debugger.Break();
+                }
                 Console.WriteLine(e);
             }
         }
 
-        private static void WriteToDisplay(GetPvPowerForecastsResponse response)
+        private static GetPvPowerForecastsResponse PowerForecast(Location location)
         {
-            Console.WriteLine($"Total Forecast Intervals {response.Forecasts.Count}");
-            foreach (var currentForecast in response.Forecasts.Select((row, index) => new {index, row}))
+            using (var client = new SolcastClient())
             {
-                Console.WriteLine($"{currentForecast.index} - {currentForecast.row.Dump()}");
+                return client.GetPvPowerForecasts(location);
             }
         }
 
-        private static void ValidateResponse(GetPvPowerForecastsResponse forecast)
+        private static async Task<GetPvPowerForecastsResponse> PowerForecastAsync(Location location)
         {
-            if (forecast.ResponseStatus?.Errors == null || !forecast.ResponseStatus.Errors.Any())
+            using (var client = new SolcastClient())
             {
-                return;
-            }            
-            foreach (var error in forecast.ResponseStatus.Errors)
-            {
-                if (Debugger.IsAttached) { Debugger.Break(); }             
-                Console.WriteLine($"Issue: {error.Dump()}");
+                return await client.GetPvPowerForecastsAsync(location);
             }
-            throw new ApplicationException("Forecast request failed");
         }
     }
 }

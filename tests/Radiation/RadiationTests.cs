@@ -1,5 +1,6 @@
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using ServiceStack.Text;
 using Xunit;
 
 namespace Solcast.Tests
@@ -10,49 +11,47 @@ namespace Solcast.Tests
         public void TestRadiationForecast()
         {
             var location = Places.Sydney();
-            var testTask = new List<Task>
+            Debug.WriteLine(location.Dump());
+            Task.Run(async () =>
             {
-                Task.Run(async () =>
+                using (var client = new SolcastClient())
                 {
-                    var results = await Radiation.ForecastAsync(location);
+                    var results = await client.GetRadiationForecastsAsync(location);
                     Assert.NotNull(results);
                     Assert.NotNull(results.Forecasts);
                     Assert.True(results.Forecasts.Count == ForecastDefault.Count);
-                })
-            };
-            Task.WaitAll(testTask.ToArray());
-        }
+                }
+            }).Wait();
+        }        
         [Fact]
         public void TestRadiationEstimatedActuals()
         {
             var location = Places.Sydney();
-            var testTask = new List<Task>
+            Debug.WriteLine(location.Dump());
+            Task.Run(async () =>
             {
-                Task.Run(async () =>
+                using (var client = new SolcastClient())
                 {
-                    var results = await Radiation.EstimatedActualsAsync(location);
+                    var results = await client.GetRadiationEstimatedActualsAsync(location);
                     Assert.NotNull(results);
-                    Assert.NotNull(results.EstimatedActuals);                 
-                })
-            };
-            Task.WaitAll(testTask.ToArray());
+                    Assert.NotNull(results.EstimatedActuals);
+                }
+            }).Wait();
         }
         [Fact]
         public void TestRadiationLatestEstimatedActuals()
         {
             var location = Places.Sydney();
-            var testTask = new List<Task>
+            Debug.WriteLine(location.Dump());
+            Task.Run(async () =>
             {
-                Task.Run(async () =>
+                using (var client = new SolcastClient())
                 {
-                    var results = await Radiation.LatestEstimatedActualsAsync(location);
+                    var results = await client.GetLatestRadiationEstimatedActualsAsync(location);
                     Assert.NotNull(results);
                     Assert.NotNull(results.EstimatedActuals);
-                    
-                })
-            };
-            Task.WaitAll(testTask.ToArray());
-        }
-        
+                }
+            }).Wait();
+        }             
     }
 }

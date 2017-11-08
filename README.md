@@ -6,19 +6,19 @@
 
 # Solcast .NET API Client library
 
-.NET client library for querying the Solcast API async/sync
+.NET client library for querying the [Solcast API](https://api.solcast.com.au) async/sync
 
 This module allows a registered users to query the Solcast API [https://api.solcast.com.au](https://api.solcast.com.au).  You will need to register your user account to obtain an API key [https://solcast.com.au/api/register](https://solcast.com.au/api/register/).  Without an API key you will not be able to successfully obtain valid API results.
 
 ### Windows setup Solcast API Key
 
-Setup System/User `environment variable`.  Details on advanced editing [StackOverflow superuser walkthrough](https://superuser.com/questions/949560/how-do-i-set-system-environment-variables-in-windows-10)
+Setup **System/User** `environment variable`.  Details on advanced editing [StackOverflow superuser walkthrough](https://superuser.com/questions/949560/how-do-i-set-system-environment-variables-in-windows-10)
 
 ```
 WinKey + R
 ```
 
-Copy and Paste the following text to the **Open:** input text box for the Run Dialog
+**Copy and Paste** the following text to the **Open:** input text box for the Run Dialog
 
 ```
 %windir%\System32\rundll32.exe sysdm.cpl,EditEnvironmentVariables
@@ -28,7 +28,7 @@ That will present this screen
 
 ![Run Windows Environment Editor](/imgs/win_launch_environment_editor.png)
 
-Add a user or system `environment variable` to hold the Solcast API key.  User environment variables will only be available to your particular user, system environment variables are shared for all users on the system
+Add a `USER` or `SYSTEM` `environment variable` to hold the Solcast API key.  User environment variables will only be available to your particular user, system environment variables are shared for all users on the system
 
 ![Add Windows User Solcast API key](/imgs/win_env_user_variable.png)
 
@@ -49,16 +49,16 @@ Open a terminal prompt
 nano .bash_profile
 ```
 
-If you do not have nano it is simpler text editor than `vi`.  Use your package manager to download and install or use `vi`.  The preferred package manager for mac OS is [Homebrew](https://brew.sh/) and once installed on your system you can issue similar commands to Linux `apt-get` and `yum` with the `brew` package manager.
+If you do not have `nano` it is a simpler text editor than `vi`.  Use your package manager to download and install or use `vi`.  The preferred package manager for mac OS is [Homebrew](https://brew.sh/) and once installed on your system you can issue similar commands to Linux `apt-get` and `yum` with the `brew` package manager.
 
-Add the Solcast API Key to your user profile variables.
+Add the **Solcast API Key** to your user profile variables.
 
 ![Added mac OS User Solcast API key](/imgs/mac_os_environment_variable.png)
 
 ### Latitude and Longitude
 
-- First as stated above you will need an API key to make valid API requests to the Solcast system.
-- Second for all current library calls you will need a valid Lat/Lng coordinate in the [EPSG:4326](http://spatialreference.org/ref/epsg/wgs-84/) format.  If you are familiar with modern web maps you most likely have used the expected format or a decimal point that expresses a position on the Earth.
+- First as stated above you will need an API key to make **valid** API requests to the Solcast system.
+- Second for all current library calls you will need a **valid** Lat/Lng coordinate in the [EPSG:4326](http://spatialreference.org/ref/epsg/wgs-84/) format.  If you are familiar with modern web maps you most likely have used the expected format or a decimal point that expresses a position on the Earth.
 
 Clarification as I often forget the coordinate planes of Latitude and Longitude along with bounds.
 ![Lat/Lng](/imgs/Lat_Long.gif)
@@ -86,6 +86,7 @@ Los Angeles, USA | 34.052235 | -118.243683
  * Fork the repository
  * Add something awesome
  * Create a pull request
+ * :sun_with_face: Celebrate :sun_with_face:
 
 ### [Sample Program](example/cli/Program.cs) 
 
@@ -115,24 +116,31 @@ var key = Environment.GetEnvironmentVariable("SOLCAST_API_KEY");
 
 #### C# async
 ```csharp
-using solcast;
+using Solcast;
 
-var response = await Power.ForecastAsync(new Location
+using (var client = new SolcastClient())
 {
-	Latitude = 32,
-	Longitude = -97
-});
+	return await client.GetPvPowerForecastsAsync(new Location
+	{
+		Latitude = 32,
+		Longitude = -97
+	});
+}
 ```
 
 #### C# sync
 ```csharp
-using solcast;
+using Solcast;
 
-var response = Power.Forecast(new Location
+using (var client = new SolcastClient())
 {
-	Latitude = 32,
-	Longitude = -97
-});
+	return client.GetPvPowerForecasts(new Location
+	{
+		Latitude = 32,
+		Longitude = -97
+	});
+}
+
 ```
 
 License

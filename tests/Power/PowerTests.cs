@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using ServiceStack.Text;
@@ -12,51 +11,47 @@ namespace Solcast.Tests
         public void TestPowerForecast()
         {
             var location = Places.Sydney();
-            Debug.WriteLine(location.Dump());            
-            var testTask = new List<Task>
+            Debug.WriteLine(location.Dump());
+            Task.Run(async () =>
             {
-                Task.Run(async () =>
+                using (var client = new SolcastClient())
                 {
-                    var results = await Power.ForecastAsync(location);
+                    var results = await client.GetPvPowerForecastsAsync(location);
                     Assert.NotNull(results);
                     Assert.NotNull(results.Forecasts);
                     Assert.True(results.Forecasts.Count == ForecastDefault.Count);
-                })
-            };
-            Task.WaitAll(testTask.ToArray());
-        }
+                }
+            }).Wait();
+        }        
         [Fact]
         public void TestPowerEstimatedActuals()
         {
             var location = Places.Sydney();
-            Debug.WriteLine(location.Dump());            
-            var testTask = new List<Task>
+            Debug.WriteLine(location.Dump());
+            Task.Run(async () =>
             {
-                Task.Run(async () =>
+                using (var client = new SolcastClient())
                 {
-                    var results = await Power.EstimatedActualsAsync(location);
+                    var results = await client.GetPvPowerEstimatedActualsAsync(location);
                     Assert.NotNull(results);
-                    Assert.NotNull(results.EstimatedActuals);                    
-                })
-            };
-            Task.WaitAll(testTask.ToArray());
+                    Assert.NotNull(results.EstimatedActuals);
+                }
+            }).Wait();
         }
         [Fact]
         public void TestPowerLatestEstimatedActuals()
         {
             var location = Places.Sydney();
-            Debug.WriteLine(location.Dump());            
-            var testTask = new List<Task>
+            Debug.WriteLine(location.Dump());
+            Task.Run(async () =>
             {
-                Task.Run(async () =>
+                using (var client = new SolcastClient())
                 {
-                    var results = await Power.LatestEstimatedActualsAsync(location);
+                    var results = await client.GetLatestPvPowerEstimatedActualsAsync(location);
                     Assert.NotNull(results);
                     Assert.NotNull(results.EstimatedActuals);
-                    
-                })
-            };
-            Task.WaitAll(testTask.ToArray());
+                }
+            }).Wait();
         }        
     }
 }
