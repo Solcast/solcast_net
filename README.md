@@ -90,7 +90,7 @@ Los Angeles, USA | 34.052235 | -118.243683
 
 ### [Sample Program](example/cli/Program.cs) 
 
-Example [CLI](https://en.wikipedia.org/wiki/Command-line_interface) provided for reference
+Example [CLI](https://en.wikipedia.org/wiki/Command-line_interface) provided for reference with multiple querying strategies
 
 ### Examples
 
@@ -114,10 +114,21 @@ var key = API.Key();
 var key = Environment.GetEnvironmentVariable("SOLCAST_API_KEY");
 ```
 
-#### C# async
+#### C# sync Single request
 ```csharp
-using Solcast;
+using (var client = new SolcastClient())
+{
+	return client.GetPvPowerForecasts(new Location
+	{
+		Latitude = 32,
+		Longitude = -97
+	});
+}
 
+```
+
+#### C# async Single request
+```csharp
 using (var client = new SolcastClient())
 {
 	return await client.GetPvPowerForecastsAsync(new Location
@@ -128,19 +139,58 @@ using (var client = new SolcastClient())
 }
 ```
 
-#### C# sync
+#### C# sync Single request with Wait and Retry
 ```csharp
-using Solcast;
+// Set a policy on WebServiceExceptions with StatusCode of 429 to wait and retry the request again in 5 seconds
+var policy = Policy
+	.Handle<WebServiceException>(z => z.StatusCode == 429)
+	.WaitAndRetry(new[] { TimeSpan.FromSeconds(5) });
 
+return policy.Execute(() =>
+{
+	using (var client = new SolcastClient())
+	{
+		return client.GetPvPowerForecasts(new Location
+		{
+			Latitude = 32,
+			Longitude = -97
+		});
+	}
+});
+```
+
+#### C# sync Sequential requests as batch
+```csharp
 using (var client = new SolcastClient())
 {
-	return client.GetPvPowerForecasts(new Location
-	{
-		Latitude = 32,
-		Longitude = -97
-	});
+	return locations.Select(location => client.GetPvPowerForecasts(location)).ToList();
 }
+```
 
+#### C# sync Parallel requests as batch
+```csharp
+var results = new List<GetPvPowerForecastsResponse>();
+using (var client = new SolcastClient())
+{
+	Parallel.ForEach(locations, location =>
+	{
+		results.Add(client.GetPvPowerForecasts(location));
+	});                
+}
+return results;
+```
+
+
+#### C# Change Client properties this is only a sample of a few of the available properties
+```csharp
+// Timeout is now set to 5 minutes
+client.GetHttpClient().Timeout = TimeSpan.FromMinutes(5);
+// Use a different API KEY
+client.Key = "<DIFFERENT API KEY>";
+client.RateLimitExceededFn = message =>
+{
+	// Custom Action<HttpResponseMessage> if RateLimit has been exceeded
+};
 ```
 
 License
