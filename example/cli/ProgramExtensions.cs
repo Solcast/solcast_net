@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using ServiceStack.Text;
@@ -8,6 +9,14 @@ namespace Cli
 {
     public static class ProgramExtensions
     {
+        public static void Print(this IEnumerable<GetPvPowerForecastsResponse> responses)
+        {
+            foreach (var response in responses)
+            {
+                response.ToConsole();                    
+            }            
+        }        
+        
         public static void ToConsole(this GetPvPowerForecastsResponse response)
         {
             Console.WriteLine($"Total Forecast Intervals {response.Forecasts.Count}");

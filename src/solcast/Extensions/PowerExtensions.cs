@@ -17,7 +17,7 @@ namespace Solcast
         /// <returns></returns>
         public static async Task<GetPvPowerEstimatedActualsResponse> GetPvPowerEstimatedActualsAsync(this SolcastClient client, Location location)
         {
-            var reqObj = location.ConvertTo<GetPvPowerEstimatedActuals>().PopulateWithNonDefaultValues(client.System.PowerOptions);
+            var reqObj = location.ConvertTo<GetPvPowerEstimatedActuals>().PopulateWithNonDefaultValues(client.PowerOptions);
             var result = await client.GetAsync(reqObj);
             return result.Format(client.CurrentTimeZone);
         }        
@@ -30,7 +30,7 @@ namespace Solcast
         /// <returns></returns>
         public static GetPvPowerEstimatedActualsResponse GetPvPowerEstimatedActuals(this SolcastClient client, Location location)
         {
-            var reqObj = location.ConvertTo<GetPvPowerEstimatedActuals>().PopulateWithNonDefaultValues(client.System.PowerOptions);
+            var reqObj = location.ConvertTo<GetPvPowerEstimatedActuals>().PopulateWithNonDefaultValues(client.PowerOptions);
             var result = client.Get(reqObj);
             return result.Format(client.CurrentTimeZone);
         }
@@ -43,7 +43,7 @@ namespace Solcast
         /// <returns></returns>
         public static async Task<GetPvPowerEstimatedActualsResponse> GetLatestPvPowerEstimatedActualsAsync(this SolcastClient client, Location location)
         {
-            var reqObj = location.ConvertTo<GetLatestPvPowerEstimatedActuals>().PopulateWithNonDefaultValues(client.System.PowerOptions);
+            var reqObj = location.ConvertTo<GetLatestPvPowerEstimatedActuals>().PopulateWithNonDefaultValues(client.PowerOptions);
             var result = await client.GetAsync(reqObj);
             return result.Format(client.CurrentTimeZone);
         }        
@@ -56,7 +56,7 @@ namespace Solcast
         /// <returns></returns>
         public static GetPvPowerEstimatedActualsResponse GetLatestPvPowerEstimatedActuals(this SolcastClient client, Location location)
         {
-            var reqObj = location.ConvertTo<GetLatestPvPowerEstimatedActuals>().PopulateWithNonDefaultValues(client.System.PowerOptions);
+            var reqObj = location.ConvertTo<GetLatestPvPowerEstimatedActuals>().PopulateWithNonDefaultValues(client.PowerOptions);
             var result = client.Get(reqObj);
             return result.Format(client.CurrentTimeZone);
         }        
@@ -69,7 +69,7 @@ namespace Solcast
         /// <returns></returns>
         public static async Task<GetPvPowerForecastsResponse> GetPvPowerForecastsAsync(this SolcastClient client, Location location)
         {
-            var reqObj = location.ConvertTo<GetPvPowerForecasts>().PopulateWithNonDefaultValues(client.System.PowerOptions);
+            var reqObj = location.ConvertTo<GetPvPowerForecasts>().PopulateWithNonDefaultValues(client.PowerOptions);
             var result = await client.GetAsync(reqObj);
             return result.Format(client.CurrentTimeZone);
         }        
@@ -82,10 +82,10 @@ namespace Solcast
         /// <returns></returns>
         public static GetPvPowerForecastsResponse GetPvPowerForecasts(this SolcastClient client, Location location)
         {
-            var reqObj = location.ConvertTo<GetPvPowerForecasts>().PopulateWithNonDefaultValues(client.System.PowerOptions);            
+            var reqObj = location.ConvertTo<GetPvPowerForecasts>().PopulateWithNonDefaultValues(client.PowerOptions);
             var result = client.Get(reqObj);
             return result.Format(client.CurrentTimeZone);
-        }        
+        }
         
         private static IEnumerable<PvPowerEstimate> FormatTimeZone(this IEnumerable<PvPowerEstimate> results, TimeZoneInfo current)
         {

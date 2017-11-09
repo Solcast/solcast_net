@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using ServiceStack;
 using ServiceStack.Text;
@@ -9,13 +10,15 @@ namespace Solcast
     {
         public readonly TimeZoneInfo CurrentTimeZone;
         public string Key { get; set; }        
-        public Options System { get; set; }
+        public PvSystem PowerOptions { get; set; }
         public SolcastClient()
-        {            
+        {
             Key = API.Key();
             CurrentTimeZone = TimeZoneInfo.Utc;
             SetupClient();
         }
+
+        public Action<HttpResponseMessage> RateLimitExceededFn;
 
         public SolcastClient(string apiKey, TimeZoneInfo inputZone = null)
         {
@@ -25,7 +28,7 @@ namespace Solcast
         }
 
         protected ApiLimits Limits;
-        
+
         private void SetupClient()
         {
             JsConfig.PropertyConvention = PropertyConvention.Lenient;
@@ -37,14 +40,20 @@ namespace Solcast
             };
             ResponseFilter = message =>
             {
+                RateLimitExceededHandler(message);
                 Limits = message.ReadLimits();
             };
             GetHttpClient().Timeout = API.Timeout;
-            System = new Options
+            PowerOptions = new PvSystem {Capacity = 5000};
+        }
+
+        private void RateLimitExceededHandler(HttpResponseMessage message)
+        {
+            if (!message.RateLimitExceeded())
             {
-                PowerOptions = new PvSystem { Capacity = 5000 },
-                RadiationOptions = new RadiationSystem()
-            };
+                return;
+            }
+            RateLimitExceededFn?.Invoke(message);
         }
 
         private void Wait()
@@ -63,8 +72,7 @@ namespace Solcast
             {
                 return;
             }
-            var delayNext = Task.Run(async () => await Task.Delay(diff));
-            delayNext.Wait();
+            Task.Run(async () => await Task.Delay(diff)).Wait();
         }
     }
 
@@ -80,6 +88,5 @@ namespace Solcast
         public readonly long? Limit;
         public readonly long? Remaining;
         public readonly DateTime? WaitUntil;
-    }
-    
+    }    
 }
