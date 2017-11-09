@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using ServiceStack.Text;
-using Solcast.Types;
+using Solcast.ServiceModel;
 
 namespace Cli
 {

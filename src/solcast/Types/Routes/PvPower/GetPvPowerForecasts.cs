@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using ServiceStack;
 
-namespace Solcast.Types
+namespace Solcast.ServiceModel
 {
     [Route("/pv_power/forecasts", "GET")]
     [DataContract]

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Solcast.Types
+namespace Solcast.ServiceModel
 {
     public class ApiAggregationPowerForecast
     {

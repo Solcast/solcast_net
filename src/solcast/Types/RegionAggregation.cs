@@ -1,4 +1,4 @@
-﻿namespace Solcast.Types
+﻿namespace Solcast.ServiceModel
 {
     public class RegionAggregation
     {

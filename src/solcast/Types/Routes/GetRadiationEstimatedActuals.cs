@@ -1,6 +1,6 @@
 ﻿using ServiceStack;
 
-namespace Solcast.Types
+namespace Solcast.ServiceModel
 {
     [Route("/radiation/estimated_actuals", "GET")]
     public class GetRadiationEstimatedActuals

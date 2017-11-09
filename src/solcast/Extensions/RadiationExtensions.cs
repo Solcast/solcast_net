@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Solcast.Types;
 using ServiceStack;
+using Solcast.ServiceModel;
 
 namespace Solcast
 {

@@ -1,6 +1,6 @@
 ﻿using ServiceStack;
 
-namespace Solcast.Types
+namespace Solcast.ServiceModel
 {
     [Route("/pv_power/collections/{CollectionId}/aggregations/{AggregationId}/estimated_actuals", "GET")]
     public class GetAggregationPowerEstimatedActuals

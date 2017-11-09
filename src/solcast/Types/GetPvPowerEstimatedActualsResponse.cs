@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ServiceStack;
 
-namespace Solcast.Types
+namespace Solcast.ServiceModel
 {
     public class GetPvPowerEstimatedActualsResponse
     {

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Solcast.Types;
 using ServiceStack;
+using Solcast.ServiceModel;
 
 namespace Solcast
 {
@@ -82,7 +82,7 @@ namespace Solcast
         /// <returns></returns>
         public static GetPvPowerForecastsResponse GetPvPowerForecasts(this SolcastClient client, Location location)
         {
-            var reqObj = location.ConvertTo<GetPvPowerForecasts>().PopulateWithNonDefaultValues(client.System.PowerOptions);
+            var reqObj = location.ConvertTo<GetPvPowerForecasts>().PopulateWithNonDefaultValues(client.System.PowerOptions);            
             var result = client.Get(reqObj);
             return result.Format(client.CurrentTimeZone);
         }        

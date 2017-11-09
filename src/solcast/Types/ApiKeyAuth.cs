@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Solcast.Types
+namespace Solcast.ServiceModel
 {
     [DataContract]
     public abstract class ApiKeyAuth
