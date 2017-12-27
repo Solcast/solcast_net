@@ -1,7 +1,6 @@
-# WORK IN PROGRESS - Currently undergoing changes and updates and once ready for use will be available via NuGet
-
 ### Live Glitch :sun_with_face:[Demo](https://solcast-demo.glitch.me/):sun_with_face:
 
+[![NuGet](https://img.shields.io/nuget/v/FeatureToggle.svg)](https://www.nuget.org/packages/Solcast)
 [![Build Status](https://travis-ci.org/Solcast/solcast_net.svg?branch=master)](https://travis-ci.org/Solcast/solcast_net)
 [![Build status](https://ci.appveyor.com/api/projects/status/bavavf78vnrsr2i5/branch/master?svg=true)](https://ci.appveyor.com/project/Siliconrob/solcast-net/branch/master)
 [![Join the chat at https://gitter.im/Solcast/Lobby](https://badges.gitter.im/Solcast/Lobby.svg)](https://gitter.im/Solcast/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
