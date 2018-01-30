@@ -6,7 +6,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Company>Solcast</Company>
     <Product>Solcast API client library</Product>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>Provides a client wrapper library for the Solcast API (https://Solcast.com.au/)
 
