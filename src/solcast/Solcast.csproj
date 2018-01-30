@@ -21,6 +21,7 @@ The Solcast API is a solar radiation and solar energy forecasting system that is
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NETStandard.Library" Version="2.0.1" />
-    <PackageReference Include="ServiceStack.HttpClient.Core" Version="5.0.0" />
+    <PackageReference Include="ServiceStack.HttpClient" Version="5.0.2" />
+    <PackageReference Include="ServiceStack.Text" Version="5.0.2" />
   </ItemGroup>
 </Project>
