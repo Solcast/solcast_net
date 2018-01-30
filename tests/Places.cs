@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Solcast.Tests
-{
+{    
     public static class Places
     {
         public static IEnumerable<TimeZoneInfo> TimeZones => TimeZoneInfo.GetSystemTimeZones();

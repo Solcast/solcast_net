@@ -6,7 +6,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Company>Solcast</Company>
     <Product>Solcast API client library</Product>
-    <Version>0.0.2</Version>
+    <Version>0.0.2.1</Version>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>Provides a client wrapper library for the Solcast API (https://Solcast.com.au/)
 
@@ -22,6 +22,5 @@ The Solcast API is a solar radiation and solar energy forecasting system that is
   <ItemGroup>
     <PackageReference Include="NETStandard.Library" Version="2.0.1" />
     <PackageReference Include="ServiceStack.HttpClient" Version="5.0.2" />
-    <PackageReference Include="ServiceStack.Text" Version="5.0.2" />
   </ItemGroup>
 </Project>

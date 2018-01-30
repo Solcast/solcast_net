@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using ServiceStack.Text;
 
 namespace Solcast
 {
@@ -73,8 +72,16 @@ namespace Solcast
                 return null;
             }
             var ticks = FindMaxAsLong(value);
-            var wait = ticks?.FromUnixTime();
+            var wait = ticks?.UnixTimeSecondToDateTime();
             return wait;
         }
+        
+        public static DateTime UnixTimeSecondToDateTime(this long unixTimeStamp) 
+        {
+            // 621355968000000000 or use this as Unix time
+            var dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp);
+            return dtDateTime;
+        }        
     }
 }
