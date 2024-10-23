@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Nikolay Petrov</Authors>
     <PackageId>Solcast</PackageId>
     <Description>C# SDK to access the Solcast API</Description>

@@ -2,7 +2,7 @@
 
 # Solcast API C# SDK
 
-[![Build, Tests](https://github.com/solcast/solcast_net/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/solcast/solcast_net/actions/workflows/build-and-test.yml)
+[![Build, Test, Package](https://github.com/solcast/solcast_net/actions/workflows/build-test-package.yml/badge.svg)](https://github.com/solcast/solcast_net/actions/workflows/build-test-package.yml)
 [![Docs](https://github.com/solcast/solcast_net/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/solcast/solcast_net/actions/workflows/deploy-docs.yml)
 
 A **C# SDK** to access the **Solcast API**, allowing you to retrieve solar radiation, weather data, and forecasts from satellite and numerical models.
@@ -38,8 +38,8 @@ dotnet add package Solcast
 Alternatively, you can build the SDK locally by cloning the repository and running the build command:
 
 ```bash
-git clone https://github.com/Solcast/solcast-api-csharp-sdk.git
-cd solcast-api-csharp-sdk
+git clone https://github.com/Solcast/solcast_net.git
+cd solcast_net
 dotnet build
 ```
 
