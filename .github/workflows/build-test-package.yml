@@ -38,7 +38,8 @@ jobs:
     - name: Extract version from Git tag
       if: startsWith(github.ref, 'refs/tags/')  # Ensure this runs only for tags
       run: |
-        CLEAN_VERSION="${GITHUB_REF##*/#v}"     # Extract the version (e.g., 0.1.0)
+        CLEAN_VERSION="${GITHUB_REF##*/}"   # Remove 'refs/tags/'
+        CLEAN_VERSION="${CLEAN_VERSION#v}"  # Remove leading 'v'
         echo "CLEAN_VERSION=$CLEAN_VERSION" >> $GITHUB_ENV  # Set it as env variable
 
     - name: Pack NuGet Package with version from tag
