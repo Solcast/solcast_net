@@ -1,0 +1,19 @@
+{
+    "name": "C# DevContainer",
+    "image": "235698489273.dkr.ecr.ap-southeast-2.amazonaws.com/sdk-docs:latest",
+     "customizations":{
+        "vscode": {
+            "extensions": [
+                "ms-dotnettools.csharp",
+				"ms-dotnettools.csdevkit",
+                "ms-dotnettools.dotnet-interactive-vscode",
+                "golang.go"
+            ]
+        },
+        "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+        }
+    },
+    "postCreateCommand": "dotnet restore",
+    "runArgs": ["--env-file", "${localWorkspaceFolder}/.env"]
+}

@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Sydney Opera House",
+        "latitude": -33.856784,
+        "longitude": 151.215297,
+        "resourceId": "ba75-e17a-7374-95ed"
+    },
+    {
+        "name": "Grand Canyon",
+        "latitude": 36.099763,
+        "longitude": -112.112485,
+        "resourceId": "375f-eb3e-71c0-ef5e"
+    },
+    {
+        "name": "Stonehenge",
+        "latitude": 51.178882,
+        "longitude": -1.826215,
+        "resourceId": "1a57-6b1f-ec18-c5c8"
+    },
+    {
+        "name": "The Colosseum",
+        "latitude": 41.89021,
+        "longitude": 12.492231,
+        "resourceId": "5f86-4c8f-2cb3-0215"
+    },
+    {
+        "name": "Giza Pyramid Complex",
+        "latitude": 29.977296,
+        "longitude": 31.132496,
+        "resourceId": "8d10-f530-af85-5cbb"
+    },
+    {
+        "name": "Taj Mahal",
+        "latitude": 27.175145,
+        "longitude": 78.042142,
+        "resourceId": "b926-8fd2-ad3f-e4f5"
+    },
+    {
+        "name": "Fort Peck",
+        "latitude": 48.30783,
+        "longitude": -105.1017,
+        "resourceId": "3ae7-2456-492c-9aba"
+    },
+    {
+        "name": "Goodwin Creek",
+        "latitude": 34.2547,
+        "longitude": -89.8729,
+        "resourceId": "b787-cf17-e429-ef1d"
+    }
+]
