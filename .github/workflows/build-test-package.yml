@@ -23,6 +23,9 @@ jobs:
       with:
         dotnet-version: '8.x'
 
+    - name: Copy README.md to the project folder
+      run: cp README.md src/Solcast/README.md
+
     - name: Set API Key Environment Variable
       run: echo "SOLCAST_API_KEY=${{ secrets.SOLCAST_API_KEY }}" >> $GITHUB_ENV
 
@@ -31,9 +34,6 @@ jobs:
 
     - name: Run tests
       run: dotnet test
-
-    - name: Copy README.md to the project folder
-      run: cp README.md src/Solcast/README.md
 
     - name: Pack NuGet Package
       run: dotnet pack --configuration Release --output ./nupkg --version ${{ github.ref_name }}
