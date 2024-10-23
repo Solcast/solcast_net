@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B2C4F1ED-65E4-434D-AEF8-B86DA0F07D87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solcast", "src\Solcast\Solcast.csproj", "{53D1854C-7684-4EE1-96B2-A549C11729B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EB1472F8-EF2B-4200-BB3D-E76C8F2DB019}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solcast.Tests", "tests\Solcast.Tests\Solcast.Tests.csproj", "{CE204F36-D923-4DAD-9176-9C76EF990082}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{3D2E673F-1EAA-4773-B6AD-B4F987C3D76B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solcast.Examples", "examples\Solcast.Examples\Solcast.Examples.csproj", "{51BD4CBD-3E0A-4888-B69B-574C485B13EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{53D1854C-7684-4EE1-96B2-A549C11729B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53D1854C-7684-4EE1-96B2-A549C11729B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53D1854C-7684-4EE1-96B2-A549C11729B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53D1854C-7684-4EE1-96B2-A549C11729B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE204F36-D923-4DAD-9176-9C76EF990082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE204F36-D923-4DAD-9176-9C76EF990082}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE204F36-D923-4DAD-9176-9C76EF990082}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE204F36-D923-4DAD-9176-9C76EF990082}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51BD4CBD-3E0A-4888-B69B-574C485B13EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51BD4CBD-3E0A-4888-B69B-574C485B13EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51BD4CBD-3E0A-4888-B69B-574C485B13EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51BD4CBD-3E0A-4888-B69B-574C485B13EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{53D1854C-7684-4EE1-96B2-A549C11729B3} = {B2C4F1ED-65E4-434D-AEF8-B86DA0F07D87}
+		{CE204F36-D923-4DAD-9176-9C76EF990082} = {EB1472F8-EF2B-4200-BB3D-E76C8F2DB019}
+		{51BD4CBD-3E0A-4888-B69B-574C485B13EF} = {3D2E673F-1EAA-4773-B6AD-B4F987C3D76B}
+	EndGlobalSection
+EndGlobal

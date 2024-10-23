@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "solcastapi-csharp-sdk"
+version = "0.1.0"
+description = ""
+authors = ["Nikolay Petrov <nikolay@solcast.com.au>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "^1.6.1"
+mkdocs-material = "^9.5.34"
+mkdocs-jupyter = "^0.25.0"
+
+
+[tool.poetry.group.generate.dependencies]
+requests = "^2.32.3"
+pyyaml = "^6.0.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

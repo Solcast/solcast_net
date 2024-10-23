@@ -1,0 +1,54 @@
+site_name: Solcast API C# SDK
+site_url: https://solcast.github.io/solcast_net/
+site_dir: public
+theme:
+  name: material
+  logo: 'img/logo.png'
+  palette:
+    primary: black
+    accent: yellow
+
+nav:
+  - Home: index.md
+  - Forecast: forecast.md
+  - Live: live.md
+  - Historic: historic.md
+  - TMY: tmy.md
+  - PV Power Sites: pv_power_sites.md
+  - Aggregations: aggregations.md
+  - Example Notebooks:
+    - '1. Getting Data':
+      - '1.1 Getting Data: Historic Solar Radiation': 'notebooks/1.1 Getting Data - Historic Solar Radiation.ipynb'
+
+extra:
+  alternate:
+    - name: Python
+      link: https://solcast.github.io/solcast-api-python-sdk/
+      lang: python
+    - name: C#
+      link: /solcast-api-csharp-sdk/
+      lang: csharp
+
+markdown_extensions:
+  - tables
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+
+plugins:
+  - mkdocs-jupyter
+#   - mkdocstrings:
+#       enabled: !ENV [ ENABLE_MKDOCSTRINGS, true ]
+#       default_handler: python
+#       handlers:
+#         python:
+#           options:
+#             show_source: false
