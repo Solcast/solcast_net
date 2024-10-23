@@ -26,7 +26,7 @@ extra:
       link: https://solcast.github.io/solcast-api-python-sdk/
       lang: python
     - name: C#
-      link: /solcast-api-csharp-sdk/
+      link: /solcast_net/
       lang: csharp
 
 markdown_extensions:

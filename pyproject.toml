@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "solcastapi-csharp-sdk"
+name = "solcast_net"
 version = "0.1.0"
 description = ""
 authors = ["Nikolay Petrov <nikolay@solcast.com.au>"]
