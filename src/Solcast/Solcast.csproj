@@ -8,15 +8,19 @@
     <Description>C# SDK to access the Solcast API</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/solcast/solcast_net</RepositoryUrl>
-    <PackageReadmeFile>../../README.md</PackageReadmeFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
   </PropertyGroup>
 
+  <Target Name="CopyReadme" BeforeTargets="Pack">
+    <Copy SourceFiles="../../README.md" DestinationFolder="$(ProjectDir)" />
+  </Target>
+
   <ItemGroup>
-    <None Update="../../README.md">
+    <None Update="README.md">
       <Pack>true</Pack>
       <PackagePath>README.md</PackagePath>
     </None>
