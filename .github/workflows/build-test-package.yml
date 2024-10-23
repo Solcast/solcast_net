@@ -23,9 +23,6 @@ jobs:
       with:
         dotnet-version: '8.x'
 
-    - name: Extract version from Git tag and remove 'v'
-      run: echo "VERSION=${GITHUB_REF##*/}" | sed 's/^v//' >> $GITHUB_ENV
-
     - name: Copy README.md to the project folder
       run: cp README.md src/Solcast/README.md
 
@@ -38,9 +35,15 @@ jobs:
     - name: Run tests
       run: dotnet test
 
+    - name: Extract version from Git tag and remove 'v'
+      if: startsWith(github.ref, 'refs/tags/')  # Ensure this runs only for tags
+      run: |
+        CLEAN_VERSION="${GITHUB_REF#v}"     # Remove leading 'v' (e.g., 0.1.0)
+        echo "CLEAN_VERSION=$CLEAN_VERSION" >> $GITHUB_ENV  # Set it as env variable
+
     - name: Pack NuGet Package with version from tag
       if: startsWith(github.ref, 'refs/tags/')  # Only package on tag creation
-      run: dotnet pack src/Solcast/Solcast.csproj --configuration Release --output ./nupkg /p:PackageVersion=${{ github.VERSION }}
+      run: dotnet pack src/Solcast/Solcast.csproj --configuration Release --output ./nupkg /p:PackageVersion=${{ env.CLEAN_VERSION }}
 
     - name: Publish NuGet Package to GitHub Packages
       if: startsWith(github.ref, 'refs/tags/')  # Only publish on tag creation
