@@ -1,4 +1,4 @@
-<img src="docs/img/logo.png" width="100" align="right">
+<img src="https://raw.githubusercontent.com/Solcast/solcast-api-csharp-sdk/main/docs/img/logo.png" width="100" align="right">
 
 # Solcast API C# SDK
 
