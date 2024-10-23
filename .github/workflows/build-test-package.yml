@@ -1,0 +1,48 @@
+name: Build, Test, and Publish NuGet Package
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*.*.*'  # Ensure that NuGet publishing is triggered on version tags like v1.0.0
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.x'
+
+    - name: Set API Key Environment Variable
+      run: echo "SOLCAST_API_KEY=${{ secrets.SOLCAST_API_KEY }}" >> $GITHUB_ENV
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Run tests
+      run: dotnet test
+
+    - name: Pack NuGet Package
+      run: dotnet pack --configuration Release --output ./nupkg
+
+    - name: Publish NuGet Package to GitHub Packages
+      if: startsWith(github.ref, 'refs/tags/')  # Only publish on tag creation
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: dotnet nuget push ./nupkg/*.nupkg --source "https://nuget.pkg.github.com/OWNER/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Publish NuGet Package to NuGet.org
+      if: startsWith(github.ref, 'refs/tags/')
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
