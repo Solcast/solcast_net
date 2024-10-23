@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Solcast\Solcast.csproj" />
+    <PackageReference Include="Solcast" Version="0.1.0" />
   </ItemGroup>
 
 </Project>
