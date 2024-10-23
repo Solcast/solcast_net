@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  packages: write
 
 jobs:
   build-test-publish:
@@ -50,7 +51,7 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')  # Only publish on tag creation
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: dotnet nuget push ./nupkg/*.nupkg --source "https://nuget.pkg.github.com/OWNER/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
+      run: dotnet nuget push ./nupkg/*.nupkg --source "https://nuget.pkg.github.com/solcast/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
 
     - name: Publish NuGet Package to NuGet.org
       if: startsWith(github.ref, 'refs/tags/')
