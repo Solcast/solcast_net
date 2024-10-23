@@ -15,10 +15,6 @@
     <OutputPath>bin\Debug\</OutputPath>
   </PropertyGroup>
 
-  <Target Name="CopyReadme" BeforeTargets="Pack">
-    <Copy SourceFiles="../../README.md" DestinationFolder="$(ProjectDir)" />
-  </Target>
-
   <ItemGroup>
     <None Update="README.md">
       <Pack>true</Pack>

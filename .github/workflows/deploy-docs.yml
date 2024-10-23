@@ -3,7 +3,7 @@ name: Deploy Docs
 
 on:
   workflow_run:
-    workflows: ["Build and Test"]  # Name of the build workflow
+    workflows: ["Build, Test, and Publish NuGet Package"]  # Name of the build workflow
     types:
       - completed
 
