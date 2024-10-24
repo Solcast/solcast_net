@@ -3,7 +3,7 @@ name: Build, Test, and Publish NuGet Package
 on:
   push:
     branches:
-      - main
+      - test
     tags:
       - 'v*.*.*'  # Ensure that NuGet publishing is triggered on version tags like v1.0.0
 
