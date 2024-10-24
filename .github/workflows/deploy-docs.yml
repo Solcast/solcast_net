@@ -1,9 +1,8 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
 name: Deploy Docs
 
 on:
   workflow_run:
-    workflows: ["Build, Test, and Publish NuGet Package"]  # Name of the build workflow
+    workflows: ["Build, Test, and Publish NuGet Package"]
     types:
       - completed
 
@@ -24,6 +23,7 @@ concurrency:
 
 jobs:
   deploy_docs:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository

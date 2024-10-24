@@ -12,49 +12,107 @@ permissions:
   packages: write
 
 jobs:
-  build-test-publish:
+
+  build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.x'
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'
 
-    - name: Copy README.md to the project folder
-      run: cp README.md src/Solcast/README.md
+      - name: Copy README.md to the project folder
+        run: cp README.md src/Solcast/README.md
 
-    - name: Set API Key Environment Variable
-      run: echo "SOLCAST_API_KEY=${{ secrets.SOLCAST_API_KEY }}" >> $GITHUB_ENV
+      - name: Restore dependencies
+        run: dotnet restore
 
-    - name: Restore dependencies
-      run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release
 
-    - name: Run tests
-      run: dotnet test
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build_artifacts
+          path: |
+            **/bin/Release/**
 
-    - name: Extract version from Git tag
-      if: startsWith(github.ref, 'refs/tags/')  # Ensure this runs only for tags
-      run: |
-        CLEAN_VERSION="${GITHUB_REF##*/}"   # Remove 'refs/tags/'
-        CLEAN_VERSION="${CLEAN_VERSION#v}"  # Remove leading 'v'
-        echo "CLEAN_VERSION=$CLEAN_VERSION" >> $GITHUB_ENV  # Set it as env variable
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Pack NuGet Package with version from tag
-      if: startsWith(github.ref, 'refs/tags/')  # Only package on tag creation
-      run: dotnet pack src/Solcast/Solcast.csproj --configuration Release --output ./nupkg /p:PackageVersion=${{ env.CLEAN_VERSION }}
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'
 
-    - name: Publish NuGet Package to GitHub Packages
-      if: startsWith(github.ref, 'refs/tags/')  # Only publish on tag creation
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: dotnet nuget push ./nupkg/*.nupkg --source "https://nuget.pkg.github.com/solcast/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build_artifacts
 
-    - name: Publish NuGet Package to NuGet.org
-      if: startsWith(github.ref, 'refs/tags/')
-      env:
-        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-      run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+      - name: Set API Key Environment Variable
+        run: echo "SOLCAST_API_KEY=${{ secrets.SOLCAST_API_KEY }}" >> $GITHUB_ENV
+
+      - name: Run tests
+        run: dotnet test --no-build --configuration Release
+
+  package:
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'
+
+      - name: Extract version from Git tag
+        run: |
+          CLEAN_VERSION="${GITHUB_REF##*/}"   # Remove 'refs/tags/'
+          CLEAN_VERSION="${CLEAN_VERSION#v}"  # Remove leading 'v'
+          echo "CLEAN_VERSION=$CLEAN_VERSION" >> $GITHUB_ENV  # Set it as env variable
+
+      - name: Copy README.md to the project folder
+        run: cp README.md src/Solcast/README.md
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Pack NuGet Package with version from tag
+        run: dotnet pack src/Solcast/Solcast.csproj --configuration Release --output ./nupkg /p:PackageVersion=${{ env.CLEAN_VERSION }}
+
+      - name: Upload Package Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: nuget_package
+          path: ./nupkg/*.nupkg
+
+  publish:
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    needs: package
+    steps:
+      - name: Download Package Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: nuget_package
+
+      - name: Publish NuGet Package to GitHub Packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: dotnet nuget push ./*.nupkg --source "https://nuget.pkg.github.com/solcast/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish NuGet Package to NuGet.org
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: dotnet nuget push ./*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json

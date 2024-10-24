@@ -34,7 +34,7 @@ dni,ghi,air_temp,period_end,period
 ## API Parameters
 - **latitude**: Latitude of the location in decimal degrees (north is positive).
 - **longitude**: Longitude of the location in decimal degrees (east is positive).
-- **output_parameters**: An array of parameters to return, such as `dni`, `ghi`, `air_temp`.
+- **outputParameters**: An array of parameters to return, such as `dni`, `ghi`, `air_temp`.
 - **format**: The format of the output (e.g., "json", "csv").
 
 ---

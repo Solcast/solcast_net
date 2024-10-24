@@ -35,7 +35,7 @@ dni,ghi,air_temp,period_end,period
 ## API Parameters
 - **latitude**: Latitude of the location in decimal degrees (north is positive).
 - **longitude**: Longitude of the location in decimal degrees (east is positive).
-- **output_parameters**: An array of parameters to return, such as `dni`, `ghi`, `air_temp`.
+- **outputParameters**: An array of parameters to return, such as `dni`, `ghi`, `air_temp`.
 - **format**: The format of the output (e.g., "json", "csv").
 
 For more information about the forecast data API, visit the [Solcast API Docs](https://docs.solcast.com.au/#80627973-4183-4ebc-8a3d-1b2324fd1ed1).
