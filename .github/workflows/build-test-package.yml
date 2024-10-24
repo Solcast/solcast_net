@@ -3,7 +3,7 @@ name: Build, Test, and Publish NuGet Package
 on:
   push:
     branches:
-      - main
+      - main, test
     tags:
       - 'v*.*.*'  # Ensure that NuGet publishing is triggered on version tags like v1.0.0
 
@@ -32,6 +32,9 @@ jobs:
 
       - name: Build
         run: dotnet build --configuration Release
+      
+      - name: List all files in the working directory
+        run: find . -type f | sort  
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v3
