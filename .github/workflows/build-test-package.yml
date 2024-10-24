@@ -37,8 +37,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build_artifacts
-          path: |
-            **/bin/Release/**
+          path: src/Solcast/bin/Release/**
 
   test:
     runs-on: ubuntu-latest
