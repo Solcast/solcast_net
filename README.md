@@ -1,9 +1,7 @@
-<img src="https://raw.githubusercontent.com/Solcast/solcast-api-csharp-sdk/main/docs/img/logo.png" width="100" align="right">
+# Solcast API C# SDK  ![](https://raw.githubusercontent.com/Solcast/solcast-api-csharp-sdk/main/docs/img/logo_s.png)
 
-# Solcast API C# SDK
 
-[![Build, Test, Package](https://github.com/solcast/solcast-api-csharp-sdk/actions/workflows/build-test-package.yml/badge.svg)](https://github.com/solcast/solcast-api-csharp-sdk/actions/workflows/build-test-package.yml)
-[![Docs](https://github.com/solcast/solcast-api-csharp-sdk/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/solcast/solcast-api-csharp-sdk/actions/workflows/deploy-docs.yml)
+[![Build, Test, Package](https://github.com/solcast/solcast-api-csharp-sdk/actions/workflows/build-test-package.yml/badge.svg)](https://github.com/solcast/solcast-api-csharp-sdk/actions/workflows/build-test-package.yml) [![Docs](https://github.com/solcast/solcast-api-csharp-sdk/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/solcast/solcast-api-csharp-sdk/actions/workflows/deploy-docs.yml)
 
 A **C# SDK** to access the **Solcast API**, allowing you to retrieve solar radiation, weather data, and forecasts from satellite and numerical models.
 
