@@ -41,6 +41,7 @@ namespace Solcast.Clients
             return new ApiResponse<string>(null, rawContent);
         }
 
+        /// <param name="resourceid"></param>
         public async Task<ApiResponse<PvPowerResource>> GetPvPowerSite(
             string resourceid = null
         )
@@ -68,6 +69,7 @@ namespace Solcast.Clients
             return new ApiResponse<PvPowerResource>(null, rawContent);
         }
 
+        /// <param name="body"></param>
         public async Task<ApiResponse<PvPowerResource>> PostPvPowerSite(
             CreatePvPowerResource body
         )
@@ -97,6 +99,7 @@ namespace Solcast.Clients
             return new ApiResponse<PvPowerResource>(null, rawContent);
         }
 
+        /// <param name="body"></param>
         public async Task<ApiResponse<PvPowerResource>> PutPvPowerSite(
             UpdatePvPowerResource body
         )
@@ -126,6 +129,7 @@ namespace Solcast.Clients
             return new ApiResponse<PvPowerResource>(null, rawContent);
         }
 
+        /// <param name="body"></param>
         public async Task<ApiResponse<PvPowerResource>> PatchPvPowerSite(
             PatchPvPowerResource body
         )
@@ -155,6 +159,7 @@ namespace Solcast.Clients
             return new ApiResponse<PvPowerResource>(null, rawContent);
         }
 
+        /// <param name="resourceid"></param>
         public async Task<ApiResponse<string>> DeletePvPowerSite(
             string resourceid = null
         )
