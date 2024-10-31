@@ -41,12 +41,13 @@ namespace Solcast.Clients
             return new ApiResponse<string>(null, rawContent);
         }
 
+        /// <param name="resourceId">The unique identifier of the resource.</param>
         public async Task<ApiResponse<PvPowerResource>> GetPvPowerSite(
-            string resourceid = null
+            string resourceId
         )
         {
             var parameters = new Dictionary<string, string>();
-            if (resourceid != null) parameters.Add("resourceid", resourceid.ToString());
+            parameters.Add("resourceId", resourceId.ToString());
 
             var queryString = string.Join("&", parameters.Select(p => $"{p.Key}={Uri.EscapeDataString(p.Value ?? string.Empty)}"));
             var response = await _httpClient.GetAsync(SolcastUrls.PvPowerSite + $"?{queryString}");
@@ -68,6 +69,7 @@ namespace Solcast.Clients
             return new ApiResponse<PvPowerResource>(null, rawContent);
         }
 
+        /// <param name="body"></param>
         public async Task<ApiResponse<PvPowerResource>> PostPvPowerSite(
             CreatePvPowerResource body
         )
@@ -97,6 +99,7 @@ namespace Solcast.Clients
             return new ApiResponse<PvPowerResource>(null, rawContent);
         }
 
+        /// <param name="body"></param>
         public async Task<ApiResponse<PvPowerResource>> PutPvPowerSite(
             UpdatePvPowerResource body
         )
@@ -126,6 +129,7 @@ namespace Solcast.Clients
             return new ApiResponse<PvPowerResource>(null, rawContent);
         }
 
+        /// <param name="body"></param>
         public async Task<ApiResponse<PvPowerResource>> PatchPvPowerSite(
             PatchPvPowerResource body
         )
@@ -155,12 +159,13 @@ namespace Solcast.Clients
             return new ApiResponse<PvPowerResource>(null, rawContent);
         }
 
+        /// <param name="resourceId">The unique identifier of the resource.</param>
         public async Task<ApiResponse<string>> DeletePvPowerSite(
-            string resourceid = null
+            string resourceId
         )
         {
             var parameters = new Dictionary<string, string>();
-            if (resourceid != null) parameters.Add("resourceid", resourceid.ToString());
+            parameters.Add("resourceId", resourceId.ToString());
 
             var queryString = string.Join("&", parameters.Select(p => $"{p.Key}={Uri.EscapeDataString(p.Value ?? string.Empty)}"));
             var response = await _httpClient.DeleteAsync(SolcastUrls.PvPowerSite + $"?{queryString}");
