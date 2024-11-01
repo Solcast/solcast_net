@@ -15,6 +15,12 @@ namespace Solcast.Clients
         {
         }        
 
+        /// <param name="outputParameters">The output parameters to include in the response.</param>
+        /// <param name="collectionId">Unique identifier for your collection.</param>
+        /// <param name="aggregationId">Unique identifier that belongs to the requested collection.</param>
+        /// <param name="hours">The number of hours to return in the response.</param>
+        /// <param name="period">Length of the averaging period in ISO 8601 format.</param>
+        /// <param name="format">Response format</param>
         public async Task<ApiResponse<LiveAggregationResponse>> GetLiveAggregations(
             List<string> outputParameters = null,
             string collectionId = null,
@@ -52,6 +58,12 @@ namespace Solcast.Clients
             return new ApiResponse<LiveAggregationResponse>(null, rawContent);
         }        
 
+        /// <param name="outputParameters">The output parameters to include in the response.</param>
+        /// <param name="collectionId">Unique identifier for your collection.</param>
+        /// <param name="aggregationId">Unique identifier that belongs to the requested collection.</param>
+        /// <param name="hours">The number of hours to return in the response.</param>
+        /// <param name="period">Length of the averaging period in ISO 8601 format.</param>
+        /// <param name="format">Response format</param>
         public async Task<ApiResponse<ForecastAggregationResponse>> GetForecastAggregations(
             List<string> outputParameters = null,
             string collectionId = null,
