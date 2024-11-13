@@ -67,7 +67,7 @@ DEFAULT_VALUES = {
     "hours": "24"
 }
 
-# Optional parameters for examples
+# Optional parameters for the examples
 EXAMPLE_OPTIONAL_PARAMS = {
     "Live": {
         "GetRadiationAndWeather": ["period", "format", "tilt", "azimuth"],
@@ -93,7 +93,6 @@ EXAMPLE_OPTIONAL_PARAMS = {
         "GetLiveAggregations": ["collectionId", "aggregationId", "outputParameters", "format"],
         "GetForecastAggregations": ["collectionId", "aggregationId", "outputParameters", "format"],
     },
-    # Add more methods and their optional parameters as needed
 }
 
 # URL mapping for parameter links
@@ -109,15 +108,20 @@ URL_MAPPINGS = {
         "GetRooftopPvPower": "https://docs.solcast.com.au/#4c9fa796-82e5-4e8a-b811-85a8c9fb85db",
         "GetAdvancedPvPower": "https://docs.solcast.com.au/#9f3aed26-1078-4ff6-86e6-23a710c6fae7",
     },
-    "TmyClient": {
-        "GetRadiationAndWeather": "https://docs.solcast.com.au/#3e4b42f5-c6b2-44e5-8b0e-8710acec8b2e",
-        "GetRooftopPvPower": "https://docs.solcast.com.au/#d4ec6726-9300-46ff-b3de-e6e06c4768df",
-        "GetAdvancedPvPower": "https://docs.solcast.com.au/#029d48ee-397f-4621-87ab-922820280113",
+    "ForecastClient": {
+        "GetRadiationAndWeather": "https://docs.solcast.com.au/#4e0e8a96-7a12-4654-8407-6bbbb37478b1",
+        "GetRooftopPvPower": "https://docs.solcast.com.au/#155071c9-3457-47ea-a689-88fa894b0f51",
+        "GetAdvancedPvPower": "https://docs.solcast.com.au/#c68d40a1-930b-468a-afda-e2c50ae2f6b0",
     },
     "HistoricClient": {
         "GetRadiationAndWeather": "https://docs.solcast.com.au/#f75aa7c6-b1ee-476c-9659-3bfb8bc7a850",
         "GetRooftopPvPower": "https://docs.solcast.com.au/#a3218b9c-ce7f-4fdd-850d-5f1029ae75f6",
         "GetAdvancedPvPower": "https://docs.solcast.com.au/#359e01c2-ef0c-4f58-812f-47726b4c3881",
+    },
+    "TmyClient": {
+        "GetRadiationAndWeather": "https://docs.solcast.com.au/#3e4b42f5-c6b2-44e5-8b0e-8710acec8b2e",
+        "GetRooftopPvPower": "https://docs.solcast.com.au/#d4ec6726-9300-46ff-b3de-e6e06c4768df",
+        "GetAdvancedPvPower": "https://docs.solcast.com.au/#029d48ee-397f-4621-87ab-922820280113",
     },
     "GetLiveAggregations": "https://docs.solcast.com.au/#3b09628d-0f9d-4a01-aa53-9af460d6c66a",
     "GetForecastAggregations": "https://docs.solcast.com.au/#feeb0565-ac06-473a-8cd1-b1493c5bcabb",
@@ -339,13 +343,22 @@ def generate_client_doc(client_name, client_file_path):
 
     endpoint_summaries = extract_summary(content)
     param_descriptions = extract_param_descriptions(content)
-    method_summary = []
 
+    # Define the order based on URL_MAPPINGS
+    url_mapping_order = list(URL_MAPPINGS.get(client_name, {}).keys()) if client_name in URL_MAPPINGS else []
     methods = list(METHOD_PATTERN.finditer(content))
+
+    # Sort methods based on the order defined in URL_MAPPINGS, fallback to original order
+    methods = sorted(
+        methods, 
+        key=lambda m: url_mapping_order.index(m.group("method_name")) if m.group("method_name") in url_mapping_order else len(url_mapping_order)
+    )
+
     if not methods:
         return ""  # Skip clients with no methods
 
     print(f"Generating documentation for {clean_client_name}:")
+
     # Add the methods summary table immediately after the client description
     doc_content += f"\nThe module {client_name} has the following available methods:\n\n"
     doc_content += "| Endpoint                  | Purpose                                              | API Docs                                                                                                               |\n"
@@ -363,23 +376,23 @@ def generate_client_doc(client_name, client_file_path):
         summary = endpoint_summaries.get(method_name, "No description available.")
         url = get_url_for_method(client_name, method_name)
 
-        # Add each method to the summary table
-        doc_content += f"| [{method_name}](#{method_name.lower()}) | {summary} | [details]({url}){{.md-button}} |\n"
+        if method_name not in SKIP_EXAMPLES_CODE:
+            doc_content += f"| [{method_name}](#{method_name.lower()}) | {summary} | [details]({url}){{.md-button}} |\n"
+        else:
+            doc_content += f"| {method_name} | {summary} | [details]({url}){{.md-button}} |\n"
 
     # Add a divider after the table
     doc_content += "\n---\n"
 
-    # Continue with generating individual method documentation
+    # Continue with generating individual method documentation in the same order
     for method in methods:
         method_name = method.group("method_name")
-        # Skip example code generation if method is in SKIP_EXAMPLES_CODE
         if method_name not in SKIP_EXAMPLES_CODE:
             params = PARAM_PATTERN.findall(method.group("params"))
             
             # Documentation for each method
             doc_content += f"\n### {method_name}\n"
             summary = endpoint_summaries.get(method_name, "No description available.")
-            # doc_content += f"{summary}\n\n"
 
             # Parameters section with tooltips
             doc_content += "**Parameters:**\n"
@@ -420,6 +433,10 @@ def generate_docs():
     for client_file in os.listdir(SDK_PATH):
         if client_file.endswith("Client.cs"):
             client_name = client_file.replace(".cs", "")
+
+            if client_name.lower() == "baseclient":
+                continue
+
             client_file_path = os.path.join(SDK_PATH, client_file)
             try:
                 doc_content = generate_client_doc(client_name, client_file_path)

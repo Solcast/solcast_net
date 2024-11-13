@@ -25,5 +25,5 @@ public class GetHorizonAngle
     /// Response format
     /// </summary>
     [JsonProperty("format")]
-    public string Format { get; set; } 
+    public string Format { get; set; }
 }

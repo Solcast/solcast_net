@@ -249,8 +249,8 @@ def generate_csharp_method_with_usings(endpoint, method, parameters, spec, respo
 
     # Generate XML comments for the method
     method_description = spec.get('paths', {}).get(endpoint, {}).get(method, {}).get('description', "")
-    xml_comment = generate_xml_comment(method_description)
-    param_comments = "\n"
+    xml_comment = generate_xml_comment(method_description, indent_level=8)
+    param_comments = ""
     for param in parameters:
         param_name = to_camel_case(param['name'])
         param_description = param.get('description', "")
@@ -405,24 +405,26 @@ namespace Solcast
     return urls_code
 
 
-def generate_xml_comment(description):
-    """Generate an XML comment from a multi-line description string with each line prefixed by ///."""
+def generate_xml_comment(description, indent_level=4):
+    """Generate an XML comment from a multi-line description string with each line prefixed by ///, aligned properly."""
     if description:
+        # Calculate the indent based on the given indent level
+        indent = ' ' * indent_level
         # Split the description into lines and prefix each with "///"
-        comment_lines = "\n".join(f"        /// {line}" for line in description.splitlines())
-        return f"\n\n        /// <summary>\n{comment_lines}\n        /// </summary>"
-    return "\n"
+        comment_lines = "\n".join(f"{indent}/// {line}" for line in description.splitlines())
+        return f"\n\n{indent}/// <summary>\n{comment_lines}\n{indent}/// </summary>\n"
+    return "\n\n"
 
 
 # Generate Models for Requests and Responses
 def generate_csharp_model_class(class_name, properties, required_properties, spec):
     """Generates a C# class for a model (request or response), with appropriate using statements."""
-    class_code = f"public class {class_name}\n{{\n"
+    class_code = f"public class {class_name}\n{{"
     required_usings = {"Newtonsoft.Json"}
 
     for prop_name, prop_info in properties.items():
         description = prop_info.get('description', "")
-        xml_comment = generate_xml_comment(description)
+        xml_comment = generate_xml_comment(description, indent_level=4)
 
         # Check if the property is a $ref to another definition
         if '$ref' in prop_info:
@@ -460,7 +462,7 @@ def generate_csharp_model_class(class_name, properties, required_properties, spe
         #     required_usings.add("System")
 
         prop_required = prop_name in required_properties
-        prop_code = f"{xml_comment}    [JsonProperty(\"{prop_name}\")]\n    public {prop_type} {to_pascal_case(prop_name)} {{ get; set; }} {'// Required' if prop_required else ''}\n"
+        prop_code = f"{xml_comment}    [JsonProperty(\"{prop_name}\")]\n    public {prop_type} {to_pascal_case(prop_name)} {{ get; set; }}{' // Required' if prop_required else ''}"
         class_code += prop_code
 
 #     class_code += """
@@ -468,7 +470,7 @@ def generate_csharp_model_class(class_name, properties, required_properties, spe
 #     public IDictionary<string, object> AdditionalData { get; set; } = new Dictionary<string, object>();
 # """
 
-    class_code += "}\n"
+    class_code += "\n}\n"
 
     return class_code, required_usings
 

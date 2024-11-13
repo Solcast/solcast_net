@@ -15,6 +15,9 @@ namespace Solcast.Clients
         {
         }
 
+        /// <summary>
+        /// Get the irradiance and weather for a Typical Meteorological Year (TMY) at a requested location, derived from satellite (clouds and irradiance over non-polar continental areas) and numerical weather models (other data). The TMY is calculated with data from 2007 to 2023.
+        /// </summary>
         /// <param name="timeZone">Timezone to return in data set. Accepted values are utc, longitudinal, or a range from -13 to 13 in 0.25 hour increments for utc offset.</param>
         /// <param name="period">Length of the averaging period in ISO 8601 format.</param>
         /// <param name="ghiWeight">When creating the TMY, the weighting of GHI to use in the target parameter. Note that ghi_weight + dni_weight must equal 1.</param>
@@ -82,6 +85,9 @@ namespace Solcast.Clients
             return new ApiResponse<TmyAdvancedPvPowerResponse>(null, rawContent);
         }
 
+        /// <summary>
+        /// Get the irradiance and weather for a Typical Meteorological Year (TMY) at a requested location, derived from satellite (clouds and irradiance over non-polar continental areas) and numerical weather models (other data). The TMY is calculated with data from 2007 to 2023.
+        /// </summary>
         /// <param name="timeZone">Timezone to return in data set. Accepted values are utc, longitudinal, or a range from -13 to 13 in 0.25 hour increments for utc offset.</param>
         /// <param name="period">Length of the averaging period in ISO 8601 format.</param>
         /// <param name="ghiWeight">When creating the TMY, the weighting of GHI to use in the target parameter. Note that ghi_weight + dni_weight must equal 1.</param>
@@ -146,6 +152,9 @@ namespace Solcast.Clients
             return new ApiResponse<TmyRadiationAndWeatherResponse>(null, rawContent);
         }
 
+        /// <summary>
+        /// Get the basic rooftop PV power estimated actuals for a Typical Meteorological Year (TMY) at a requested location, derived from satellite (clouds and irradiance over non-polar continental areas) and numerical weather models (other data). The TMY is calculated with data from 2007 to 2023.
+        /// </summary>
         /// <param name="timeZone">Timezone to return in data set. Accepted values are utc, longitudinal, or a range from -13 to 13 in 0.25 hour increments for utc offset.</param>
         /// <param name="period">Length of the averaging period in ISO 8601 format.</param>
         /// <param name="ghiWeight">When creating the TMY, the weighting of GHI to use in the target parameter. Note that ghi_weight + dni_weight must equal 1.</param>
