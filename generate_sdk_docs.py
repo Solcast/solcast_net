@@ -420,6 +420,10 @@ def generate_docs():
     for client_file in os.listdir(SDK_PATH):
         if client_file.endswith("Client.cs"):
             client_name = client_file.replace(".cs", "")
+
+            if client_name.lower() == "base":
+                continue
+
             client_file_path = os.path.join(SDK_PATH, client_file)
             try:
                 doc_content = generate_client_doc(client_name, client_file_path)
