@@ -141,23 +141,31 @@ var response = await pvClient.GetPvPowerSite("ba75-e17a-7374-95ed");
 ## API Methods
 ### LiveClient
 - `GetRadiationAndWeather`: Retrieves live solar radiation and weather data.
+- `GetAdvancedPvPower`: Retrieves advanced PV power live data.
+- `GetRooftopPvPower`: Retrieves live rooftop PV power data based on location and other parameters.
 ### ForecastClient
 - `GetForecast`: Retrieves forecast solar radiation and weather data for up to 14 days ahead.
+- `GetRadiationAndWeather`: Retrieves forecast radiation and weather data for a specified location.
+- `GetAdvancedPvPower`: Retrieves advanced PV power forecasts with customizable options.
+- `GetRooftopPvPower`: Retrieves rooftop PV power forecast data based on location and other parameters.
 ### HistoricClient
-- `GetRadiationAndWeather`: Retrieves historic solar radiation and weather data.
+- `GetRadiationAndWeather`: Retrieves historic solar radiation and weather data for a specified time range.
+- `GetAdvancedPvPower`: Retrieves advanced PV power historical data.
+- `GetRooftopPvPower`: Retrieves rooftop PV power historical data.
 ### TmyClient
-- `GetRadiationAndWeather`: Retrieves TMY (Typical Meteorological Year) irradiance and weather data.
-- `GetRooftopPvPower`: Retrieves TMY rooftop PV power estimated actuals.
+- `GetRadiationAndWeather`: Retrieves TMY irradiance and weather data for a specified location.
+- `GetAdvancedPvPower`: Retrieves advanced PV power TMY data.
+- `GetRooftopPvPower`: Retrieves TMY rooftop PV power data.
 ### AggregationClient
 - `GetLiveAggregation`: Retrieves live grid aggregation data for up to 7 days.
 - `GetForecastAggregation`: Retrieves forecast grid aggregation data for up to 7 days.
 ### PvPowerSitesClient
-- `ListPvPowerSites`: Retrieves a list of available PV Power Sites.
-- `GetPvPowerSite`: Retrieves metadata for a specific PV Power Site.
-- `CreatePvPowerSite`: Creates a new PV Power Site for use with advanced solar power modeling.
-- `PatchPvPowerSite`: Partially updates the metadata for an existing PV Power Site.
-- `UpdatePvPowerSite`: Overwrites the metadata for an existing PV Power Site.
-- `DeletePvPowerSite`: Deletes an existing PV Power Site.
+- `GetPvPowerSites`: Retrieves a list of all available PV power sites.
+- `GetPvPowerSite`: Retrieves metadata for a specific PV power site by its resource ID.
+- `PostPvPowerSite`: Creates a new PV Power Site for use with advanced PV power model.
+- `PatchPvPowerSite`: Partially updates the specifications of an existing PV power site.
+- `PutPvPowerSite`: Overwrites an existing PV power site specifications.
+- `DeletePvPowerSite`: Deletes an existing PV power site.
 
 
 ## Contributing
@@ -166,6 +174,11 @@ We welcome contributions to this SDK! If you'd like to contribute, please submit
 To generate the sdk from the openapi specs run:
 ```bash
 python3 generate_sdk_csharp.py
+```
+
+To generate the documentation run:
+```bash
+python3 generate_sdk_docs.py [--use-cache]
 ```
 
 ## Running Tests

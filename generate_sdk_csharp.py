@@ -250,7 +250,7 @@ def generate_csharp_method_with_usings(endpoint, method, parameters, spec, respo
     # Generate XML comments for the method
     method_description = spec.get('paths', {}).get(endpoint, {}).get(method, {}).get('description', "")
     xml_comment = generate_xml_comment(method_description)
-    param_comments = "\n\n"
+    param_comments = "\n"
     for param in parameters:
         param_name = to_camel_case(param['name'])
         param_description = param.get('description', "")
@@ -406,10 +406,12 @@ namespace Solcast
 
 
 def generate_xml_comment(description):
-    """Generate an XML comment from a description string."""
+    """Generate an XML comment from a multi-line description string with each line prefixed by ///."""
     if description:
-        return f"\n    /// <summary>\n    /// {description}\n    /// </summary>\n"
-    return ""
+        # Split the description into lines and prefix each with "///"
+        comment_lines = "\n".join(f"        /// {line}" for line in description.splitlines())
+        return f"\n\n        /// <summary>\n{comment_lines}\n        /// </summary>"
+    return "\n"
 
 
 # Generate Models for Requests and Responses

@@ -1,6 +1,6 @@
 # Welcome to Solcast
 
-A simple C# SDK that wraps [Solcast's API](https://docs.solcast.com.au/).
+C# SDK that wraps [Solcast's API](https://docs.solcast.com.au/).
 
 ## Install
 
@@ -55,14 +55,14 @@ For more detailed documentation, visit the following pages:
 
 | Module           | API Docs                                 |
 |------------------|------------------------------------------|
-| `live`           | [Solcast.Clients.LiveClient](live.md) |
-| `historic`       | [Solcast.Clients.HistoricClient](historic.md) |
-| `forecast`       | [Solcast.Clients.ForecastClient](forecast.md) |
-| `tmy`            | [Solcast.Clients.TmyClient](tmy.md) |
-| `pv_power_sites` | [Solcast.Clients.PvPowerSitesClient](pv_power_sites.md) |
-| `aggregations`   | [Solcast.Clients.AggregationClient](aggregations.md) |
+| `Live`           | [Solcast.Clients.LiveClient](live.md) |
+| `Historic`       | [Solcast.Clients.HistoricClient](historic.md) |
+| `Forecast`       | [Solcast.Clients.ForecastClient](forecast.md) |
+| `TMY`            | [Solcast.Clients.TmyClient](tmy.md) |
+| `PV Power Sites` | [Solcast.Clients.PvPowerSiteClient](pvpowersite.md) |
+| `Aggregations`   | [Solcast.Clients.AggregationClient](aggregation.md) |
 
 
 ## API Documentation
-For more detailed information about the Solcast API, please visit the official API documentation.
+For more detailed information about the Solcast API, please visit the official [API documentation](http://docs.solcast.com.au).
 

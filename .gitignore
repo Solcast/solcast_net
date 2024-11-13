@@ -5,3 +5,5 @@ TestResults/
 .vscode/launch.json
 .env
 venv
+public/
+/tmp/

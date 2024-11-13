@@ -7,6 +7,8 @@ theme:
   palette:
     primary: black
     accent: yellow
+  features:
+    - content.tooltips
 
 nav:
   - Home: index.md
@@ -14,8 +16,8 @@ nav:
   - Live: live.md
   - Historic: historic.md
   - TMY: tmy.md
-  - PV Power Sites: pv_power_sites.md
-  - Aggregations: aggregations.md
+  - PV Power Site: pvpowersite.md
+  - Aggregation: aggregation.md
   - Example Notebooks:
     - '1. Getting Data':
       - '1.1 Getting Data: Historic Solar Radiation': 'notebooks/1.1 Getting Data - Historic Solar Radiation.ipynb'
@@ -40,7 +42,7 @@ markdown_extensions:
   - pymdownx.superfences
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
+  - abbr
   - attr_list
 
 plugins:
