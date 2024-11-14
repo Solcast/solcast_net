@@ -171,7 +171,7 @@ namespace Solcast.Clients
 
             // Get the version from the assembly metadata for User-Agent
             var version = GetAssemblyVersion();
-            _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"solcast-api-csharp/{version}");
+            _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"solcast-api-csharp-sdk/{version}");
         }
 
         private static string GetAssemblyVersion()
@@ -181,7 +181,8 @@ namespace Solcast.Clients
                 typeof(AssemblyInformationalVersionAttribute)
             );
 
-            return attribute?.InformationalVersion ?? "1.0.0";
+            var version = attribute?.InformationalVersion ?? "1.0.0";
+            return version.Split('+')[0];
         }
     }
 }

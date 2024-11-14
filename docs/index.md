@@ -23,7 +23,7 @@ var liveClient = new LiveClient();
 var response = await liveClient.GetRadiationAndWeather(
     latitude: -33.856784,
     longitude: 151.215297,
-    output_parameteres: ["air_temp", "dni", "ghi" ]
+    outputParameteres: ["air_temp", "dni", "ghi" ]
 );
 ```
 
