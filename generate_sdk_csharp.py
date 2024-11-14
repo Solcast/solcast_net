@@ -153,6 +153,7 @@ def generate_base_client():
     base_client_code = """
 using System;
 using System.Net.Http;
+using System.Reflection;
 
 namespace Solcast.Clients
 {
@@ -167,6 +168,20 @@ namespace Solcast.Clients
                 BaseAddress = new Uri(SolcastUrls.BaseUrl)
             };
             _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {Environment.GetEnvironmentVariable("SOLCAST_API_KEY")}");
+
+            // Get the version from the assembly metadata for User-Agent
+            var version = GetAssemblyVersion();
+            _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"solcast-api-csharp/{version}");
+        }
+
+        private static string GetAssemblyVersion()
+        {
+            var attribute = (AssemblyInformationalVersionAttribute)Attribute.GetCustomAttribute(
+                Assembly.GetExecutingAssembly(),
+                typeof(AssemblyInformationalVersionAttribute)
+            );
+
+            return attribute?.InformationalVersion ?? "1.0.0";
         }
     }
 }
@@ -221,8 +236,6 @@ def order_namespaces(namespaces, app_namespace="Solcast"):
     # Combine all categories in the recommended order
     ordered_namespaces = system_namespace + system_namespaces + \
         third_party_namespaces + app_specific_namespaces + alias_and_static
-    # print(ordered_namespaces)
-    # import pdb; pdb.set_trace()
 
     return ordered_namespaces
 
