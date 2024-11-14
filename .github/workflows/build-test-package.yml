@@ -56,11 +56,18 @@ jobs:
         run: |
           CLEAN_VERSION="${GITHUB_REF##*/}"   # Remove 'refs/tags/'
           CLEAN_VERSION="${CLEAN_VERSION#v}"  # Remove leading 'v'
-          echo "CLEAN_VERSION=$CLEAN_VERSION" >> $GITHUB_ENV  # Set it as env variable
-
+          NUMERIC_VERSION=$(echo "$CLEAN_VERSION" | sed 's/[^0-9.]*$//')  # Strip any suffix for AssemblyVersion
+          echo "CLEAN_VERSION=$CLEAN_VERSION" >> $GITHUB_ENV
+          echo "NUMERIC_VERSION=$NUMERIC_VERSION" >> $GITHUB_ENV
+      
       - name: Pack NuGet Package with version from tag
-        run: dotnet pack src/Solcast/Solcast.csproj --configuration Release --output ./nupkg /p:PackageVersion=${{ env.CLEAN_VERSION }}
-
+        run: |
+          dotnet pack src/Solcast/Solcast.csproj --configuration Release --output ./nupkg \
+            /p:Version=${{ env.CLEAN_VERSION }} \
+            /p:AssemblyVersion=${{ env.NUMERIC_VERSION }} \
+            /p:FileVersion=${{ env.NUMERIC_VERSION }} \
+            /p:InformationalVersion=${{ env.CLEAN_VERSION }}
+      
       - name: Publish NuGet Package to GitHub Packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
