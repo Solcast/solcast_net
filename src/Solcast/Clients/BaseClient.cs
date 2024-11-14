@@ -29,7 +29,8 @@ namespace Solcast.Clients
                 typeof(AssemblyInformationalVersionAttribute)
             );
 
-            return attribute?.InformationalVersion ?? "1.0.0";
+            var version = attribute?.InformationalVersion ?? "1.0.0";
+            return version.Split('+')[0];
         }
     }
 }
