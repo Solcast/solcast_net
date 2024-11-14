@@ -56,7 +56,7 @@ jobs:
         run: |
           CLEAN_VERSION="${GITHUB_REF##*/}"   # Remove 'refs/tags/'
           CLEAN_VERSION="${CLEAN_VERSION#v}"  # Remove leading 'v'
-          NUMERIC_VERSION=$(echo "$CLEAN_VERSION" | sed 's/[^0-9.]*$//')  # Strip any suffix for AssemblyVersion
+          NUMERIC_VERSION=$(echo "$CLEAN_VERSION" | sed 's/[^0-9.].*//')  # Strip any suffix for AssemblyVersion
           echo "CLEAN_VERSION=$CLEAN_VERSION" >> $GITHUB_ENV
           echo "NUMERIC_VERSION=$NUMERIC_VERSION" >> $GITHUB_ENV
       
