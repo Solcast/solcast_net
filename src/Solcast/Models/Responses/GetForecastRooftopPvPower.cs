@@ -4,6 +4,12 @@ using Newtonsoft.Json;
 public class GetForecastRooftopPvPower
 {
 
+    [JsonProperty("start_date")]
+    public string StartDate { get; set; }
+
+    [JsonProperty("end_date")]
+    public string EndDate { get; set; }
+
     /// <summary>
     /// The number of hours to return in the response.
     /// </summary>
