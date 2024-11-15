@@ -15,9 +15,6 @@ namespace Solcast.Clients
         {
         }        
 
-        /// <summary>
-        /// Get live aggregation data for up to 7 days of data at a time for a requested collection or aggregation.
-        /// </summary>
         /// <param name="outputParameters">The output parameters to include in the response.</param>
         /// <param name="collectionId">Unique identifier for your collection.</param>
         /// <param name="aggregationId">Unique identifier that belongs to the requested collection.</param>
@@ -61,9 +58,6 @@ namespace Solcast.Clients
             return new ApiResponse<LiveAggregationResponse>(null, rawContent);
         }        
 
-        /// <summary>
-        /// Get forecast aggregation data for up to 7 days of data at a time for a requested collection or aggregation.
-        /// </summary>
         /// <param name="outputParameters">The output parameters to include in the response.</param>
         /// <param name="collectionId">Unique identifier for your collection.</param>
         /// <param name="aggregationId">Unique identifier that belongs to the requested collection.</param>
