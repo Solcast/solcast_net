@@ -15,9 +15,6 @@ namespace Solcast.Clients
         {
         }
 
-        /// <summary>
-        /// Get historical advanced PV power estimated actuals for the requested location, derived from satellite (clouds and irradiance over non-polar continental areas) and numerical weather models (other data).
-        /// </summary>
         /// <param name="start">ISO_8601 compliant starting datetime for the historical data. If the supplied value does not specify a timezone, the timezone will be inferred from the time_zone parameter, if supplied. Otherwise UTC is assumed.</param>
         /// <param name="end">Must include one of end_date and duration. ISO_8601 compliant ending datetime for the historical data. Must be within 31 days of the start_date. If the supplied value does not specify a timezone, the timezone will be inferred from the time_zone parameter, if supplied. Otherwise UTC is assumed.</param>
         /// <param name="duration">Must include one of end_date and duration. ISO_8601 compliant duration for the historical data. Must be within 31 days of the start_date.</param>
@@ -85,9 +82,6 @@ namespace Solcast.Clients
             return new ApiResponse<LiveResponse>(null, rawContent);
         }
 
-        /// <summary>
-        /// Get historical irradiance and weather estimated actuals for up to 31 days of data at a time for a requested location, derived from satellite (clouds and irradiance over non-polar continental areas) and numerical weather models (other data). Data is available from 2007-01-01T00:00Z up to real-time estimated actuals.
-        /// </summary>
         /// <param name="start">ISO_8601 compliant starting datetime for the historical data. If the supplied value does not specify a timezone, the timezone will be inferred from the time_zone parameter, if supplied. Otherwise UTC is assumed.</param>
         /// <param name="end">Must include one of end_date and duration. ISO_8601 compliant ending datetime for the historical data. Must be within 31 days of the start_date. If the supplied value does not specify a timezone, the timezone will be inferred from the time_zone parameter, if supplied. Otherwise UTC is assumed.</param>
         /// <param name="duration">Must include one of end_date and duration. ISO_8601 compliant duration for the historical data. Must be within 31 days of the start_date.</param>
@@ -152,13 +146,6 @@ namespace Solcast.Clients
             return new ApiResponse<HistoricRadiationAndWeatherResponse>(null, rawContent);
         }
 
-        /// <summary>
-        /// Get historical basic rooftop PV power estimated actuals for the requested location, derived from satellite (clouds and irradiance over non-polar continental areas) and numerical weather models (other data).
-        /// 
-        /// **Attention hobbyist users**
-        /// 
-        /// If you have a hobbyist user account please use the [Rooftop Sites (Hobbyist)](https://docs.solcast.com.au/#00577cf8-b43b-4349-b4b5-a5f063916f5a) endpoints.
-        /// </summary>
         /// <param name="start">ISO_8601 compliant starting datetime for the historical data. If the supplied value does not specify a timezone, the timezone will be inferred from the time_zone parameter, if supplied. Otherwise UTC is assumed.</param>
         /// <param name="end">Must include one of end_date and duration. ISO_8601 compliant ending datetime for the historical data. Must be within 31 days of the start_date. If the supplied value does not specify a timezone, the timezone will be inferred from the time_zone parameter, if supplied. Otherwise UTC is assumed.</param>
         /// <param name="duration">Must include one of end_date and duration. ISO_8601 compliant duration for the historical data. Must be within 31 days of the start_date.</param>
