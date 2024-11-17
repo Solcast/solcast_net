@@ -9,9 +9,9 @@ The module HistoricClient has the following available methods:
 
 | Endpoint                  | Purpose                                              | API Docs                                                                                                               |
 |---------------------------|------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| [GetRadiationAndWeather](#getradiationandweather) | Get historical irradiance and weather estimated actuals for up to 31 days of data at a time for a requested location, derived from satellite (clouds and irradiance over non-polar continental areas) and numerical weather models (other data). Data is available from 2007-01-01T00:00Z up to real-time estimated actuals. | [details](https://docs.solcast.com.au/#f75aa7c6-b1ee-476c-9659-3bfb8bc7a850){.md-button} |
-| [GetRooftopPvPower](#getrooftoppvpower) | Get historical basic rooftop PV power estimated actuals for the requested location, derived from satellite (clouds and irradiance over non-polar continental areas) and numerical weather models (other data).          **Attention hobbyist users**          If you have a hobbyist user account please use the [Rooftop Sites (Hobbyist)](https://docs.solcast.com.au/#00577cf8-b43b-4349-b4b5-a5f063916f5a) endpoints. | [details](https://docs.solcast.com.au/#a3218b9c-ce7f-4fdd-850d-5f1029ae75f6){.md-button} |
-| [GetAdvancedPvPower](#getadvancedpvpower) | Get historical advanced PV power estimated actuals for the requested location, derived from satellite (clouds and irradiance over non-polar continental areas) and numerical weather models (other data). | [details](https://docs.solcast.com.au/#359e01c2-ef0c-4f58-812f-47726b4c3881){.md-button} |
+| [GetRadiationAndWeather](#getradiationandweather) | No description available. | [details](https://docs.solcast.com.au/#f75aa7c6-b1ee-476c-9659-3bfb8bc7a850){.md-button} |
+| [GetRooftopPvPower](#getrooftoppvpower) | No description available. | [details](https://docs.solcast.com.au/#a3218b9c-ce7f-4fdd-850d-5f1029ae75f6){.md-button} |
+| [GetAdvancedPvPower](#getadvancedpvpower) | No description available. | [details](https://docs.solcast.com.au/#359e01c2-ef0c-4f58-812f-47726b4c3881){.md-button} |
 
 ---
 
@@ -34,16 +34,7 @@ var response = await historicClient.GetRadiationAndWeather(
 Console.WriteLine(response.RawResponse);
 
 ```
-**Sample Output:**
-
-| air_temp | dni | ghi | period_end | period |
-| --- | --- | --- | --- | --- |
-| 15 | 0 | 5 | 2024-06-01T06:30:00+00:00 | PT30M |
-| 15 | 0 | 1 | 2024-06-01T07:00:00+00:00 | PT30M |
-| ... | ... | ... | ... | ... |
-| 13 | 23 | 112 | 2024-07-01T05:30:00+00:00 | PT30M |
-| 13 | 0 | 70 | 2024-07-01T06:00:00+00:00 | PT30M |
-
+No output generated for this example.
 ---
 
 ### GetRooftopPvPower
@@ -66,16 +57,7 @@ var response = await historicClient.GetRooftopPvPower(
 Console.WriteLine(response.RawResponse);
 
 ```
-**Sample Output:**
-
-| pv_power_rooftop | period_end | period |
-| --- | --- | --- |
-| 0 | 2024-06-01T06:30:00+00:00 | PT30M |
-| 0 | 2024-06-01T07:00:00+00:00 | PT30M |
-| ... | ... | ... |
-| 0.439 | 2024-07-01T05:30:00+00:00 | PT30M |
-| 0.212 | 2024-07-01T06:00:00+00:00 | PT30M |
-
+No output generated for this example.
 ---
 
 ### GetAdvancedPvPower
@@ -96,14 +78,5 @@ var response = await historicClient.GetAdvancedPvPower(
 Console.WriteLine(response.RawResponse);
 
 ```
-**Sample Output:**
-
-| pv_power_advanced | period_end | period |
-| --- | --- | --- |
-| 0.023 | 2024-06-01T06:30:00+00:00 | PT30M |
-| 0 | 2024-06-01T07:00:00+00:00 | PT30M |
-| ... | ... | ... |
-| 1.582 | 2024-07-01T05:30:00+00:00 | PT30M |
-| 0.914 | 2024-07-01T06:00:00+00:00 | PT30M |
-
+No output generated for this example.
 ---

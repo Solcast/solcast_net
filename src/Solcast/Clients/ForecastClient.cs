@@ -15,9 +15,6 @@ namespace Solcast.Clients
         {
         }
 
-        /// <summary>
-        /// Get high-spec PV power forecasts for the requested site from the present up to 14 days ahead, derived from satellite (clouds and irradiance over non-polar continental areas, nowcasted for approx. four hours ahead) and numerical weather models (other data and longer horizons).
-        /// </summary>
         /// <param name="hours">The number of hours to return in the response.</param>
         /// <param name="outputParameters">The output parameters to include in the response.</param>
         /// <param name="resourceId">The resource id of the resource.</param>
@@ -76,9 +73,6 @@ namespace Solcast.Clients
             return new ApiResponse<ForecastResponse>(null, rawContent);
         }
 
-        /// <summary>
-        /// Get forecast aggregation data for up to 7 days of data at a time for a requested collection or aggregation.
-        /// </summary>
         /// <param name="outputParameters">The output parameters to include in the response.</param>
         /// <param name="collectionId">Unique identifier for your collection.</param>
         /// <param name="aggregationId">Unique identifier that belongs to the requested collection.</param>
@@ -122,15 +116,6 @@ namespace Solcast.Clients
             return new ApiResponse<ForecastAggregationResponse>(null, rawContent);
         }
 
-        /// <summary>
-        /// Get basic rooftop PV power forecasts from the present time up to 14 days ahead for the requested location, derived from satellite (clouds and irradiance over non-polar continental areas, nowcasted for approx. four hours ahead) and numerical weather models (other data and longer horizons).
-        /// 
-        /// The basic rooftop power simulation is only suitable for residential and smaller C&I rooftop sites, not for grid-scale sites.
-        /// 
-        /// **Attention hobbyist users**
-        /// 
-        /// If you have a hobbyist user account please use the [Rooftop Sites (Hobbyist)](https://docs.solcast.com.au/#00577cf8-b43b-4349-b4b5-a5f063916f5a) endpoints.
-        /// </summary>
         /// <param name="hours">The number of hours to return in the response.</param>
         /// <param name="period">Length of the averaging period in ISO 8601 format.</param>
         /// <param name="latitude">The latitude of the location you request data for. Must be a decimal number between -90 and 90.</param>
@@ -192,9 +177,6 @@ namespace Solcast.Clients
             return new ApiResponse<ForecastResponse>(null, rawContent);
         }
 
-        /// <summary>
-        /// Get irradiance and weather forecasts for the requested location from the present up to 14 days ahead, derived from satellite (clouds and irradiance over non-polar continental areas, now casted for approx. four hours ahead) and numerical weather models (other data and longer horizons).
-        /// </summary>
         /// <param name="hours">The number of hours to return in the response.</param>
         /// <param name="period">Length of the averaging period in ISO 8601 format.</param>
         /// <param name="tilt">The angle (degrees) that the PV system is tilted off the horizontal. A tilt of 0 means the system faces directly upwards, and 90 means the system is vertical and facing the horizon. If you don't specify tilt, we use a default tilt angle based on the latitude you specify in your request. Must be between 0 and 90.</param>

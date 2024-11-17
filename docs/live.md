@@ -9,9 +9,9 @@ The module LiveClient has the following available methods:
 
 | Endpoint                  | Purpose                                              | API Docs                                                                                                               |
 |---------------------------|------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| [GetRadiationAndWeather](#getradiationandweather) | Get irradiance and weather estimated actuals for near real-time and past 7 days for the requested location, derived from satellite (clouds and irradiance over non-polar continental areas) and numerical weather models (other data). | [details](https://docs.solcast.com.au/#b9863910-c788-4e98-a3af-eb8da8f49647){.md-button} |
-| [GetRooftopPvPower](#getrooftoppvpower) | Get basic rooftop PV power estimated actuals for near real-time and past 7 days for the requested location, derived from satellite (clouds and irradiance over non-polar continental areas) and numerical weather models (other data).          The basic rooftop power simulation is only suitable for residential and smaller C&I rooftop sites, not for grid-scale sites.          **Attention hobbyist users**          If you have a hobbyist user account please use the [Rooftop Sites (Hobbyist)](https://docs.solcast.com.au/#00577cf8-b43b-4349-b4b5-a5f063916f5a) endpoints. | [details](https://docs.solcast.com.au/#4c9fa796-82e5-4e8a-b811-85a8c9fb85db){.md-button} |
-| [GetAdvancedPvPower](#getadvancedpvpower) | Get high spec PV power estimated actuals for near real-time and past 7 days for the requested site, derived from satellite (clouds and irradiance over non-polar continental areas) and numerical weather models (other data). | [details](https://docs.solcast.com.au/#9f3aed26-1078-4ff6-86e6-23a710c6fae7){.md-button} |
+| [GetRadiationAndWeather](#getradiationandweather) | No description available. | [details](https://docs.solcast.com.au/#b9863910-c788-4e98-a3af-eb8da8f49647){.md-button} |
+| [GetRooftopPvPower](#getrooftoppvpower) | No description available. | [details](https://docs.solcast.com.au/#4c9fa796-82e5-4e8a-b811-85a8c9fb85db){.md-button} |
+| [GetAdvancedPvPower](#getadvancedpvpower) | No description available. | [details](https://docs.solcast.com.au/#9f3aed26-1078-4ff6-86e6-23a710c6fae7){.md-button} |
 
 ---
 
@@ -35,16 +35,7 @@ var response = await liveClient.GetRadiationAndWeather(
 Console.WriteLine(response.RawResponse);
 
 ```
-**Sample Output:**
-
-| air_temp | dni | ghi | period_end | period |
-| --- | --- | --- | --- | --- |
-| 21 | 0 | 80 | 2024-11-13T06:00:00Z | PT30M |
-| 21 | 0 | 97 | 2024-11-13T05:30:00Z | PT30M |
-| ... | ... | ... | ... | ... |
-| 20 | 0 | 97 | 2024-11-11T06:30:00Z | PT30M |
-| 20 | 0 | 88 | 2024-11-11T06:00:00Z | PT30M |
-
+No output generated for this example.
 ---
 
 ### GetRooftopPvPower
@@ -65,16 +56,7 @@ var response = await liveClient.GetRooftopPvPower(
 Console.WriteLine(response.RawResponse);
 
 ```
-**Sample Output:**
-
-| pv_power_rooftop | period_end | period |
-| --- | --- | --- |
-| 0.244 | 2024-11-13T06:00:00Z | PT30M |
-| 0.32 | 2024-11-13T05:30:00Z | PT30M |
-| ... | ... | ... |
-| 0.32 | 2024-11-11T06:30:00Z | PT30M |
-| 0.279 | 2024-11-11T06:00:00Z | PT30M |
-
+No output generated for this example.
 ---
 
 ### GetAdvancedPvPower
@@ -93,14 +75,5 @@ var response = await liveClient.GetAdvancedPvPower(
 Console.WriteLine(response.RawResponse);
 
 ```
-**Sample Output:**
-
-| pv_power_advanced | period_end | period |
-| --- | --- | --- |
-| 0.857 | 2024-11-13T06:00:00Z | PT30M |
-| 1.093 | 2024-11-13T05:30:00Z | PT30M |
-| ... | ... | ... |
-| 2.141 | 2024-11-06T06:30:00Z | PT30M |
-| 2.7 | 2024-11-06T06:00:00Z | PT30M |
-
+No output generated for this example.
 ---

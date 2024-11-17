@@ -9,9 +9,9 @@ The module TmyClient has the following available methods:
 
 | Endpoint                  | Purpose                                              | API Docs                                                                                                               |
 |---------------------------|------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| [GetRadiationAndWeather](#getradiationandweather) | Get the irradiance and weather for a Typical Meteorological Year (TMY) at a requested location, derived from satellite (clouds and irradiance over non-polar continental areas) and numerical weather models (other data). The TMY is calculated with data from 2007 to 2023. | [details](https://docs.solcast.com.au/#3e4b42f5-c6b2-44e5-8b0e-8710acec8b2e){.md-button} |
-| [GetRooftopPvPower](#getrooftoppvpower) | Get the basic rooftop PV power estimated actuals for a Typical Meteorological Year (TMY) at a requested location, derived from satellite (clouds and irradiance over non-polar continental areas) and numerical weather models (other data). The TMY is calculated with data from 2007 to 2023. | [details](https://docs.solcast.com.au/#d4ec6726-9300-46ff-b3de-e6e06c4768df){.md-button} |
-| [GetAdvancedPvPower](#getadvancedpvpower) | Get the irradiance and weather for a Typical Meteorological Year (TMY) at a requested location, derived from satellite (clouds and irradiance over non-polar continental areas) and numerical weather models (other data). The TMY is calculated with data from 2007 to 2023. | [details](https://docs.solcast.com.au/#029d48ee-397f-4621-87ab-922820280113){.md-button} |
+| [GetRadiationAndWeather](#getradiationandweather) | No description available. | [details](https://docs.solcast.com.au/#3e4b42f5-c6b2-44e5-8b0e-8710acec8b2e){.md-button} |
+| [GetRooftopPvPower](#getrooftoppvpower) | No description available. | [details](https://docs.solcast.com.au/#d4ec6726-9300-46ff-b3de-e6e06c4768df){.md-button} |
+| [GetAdvancedPvPower](#getadvancedpvpower) | No description available. | [details](https://docs.solcast.com.au/#029d48ee-397f-4621-87ab-922820280113){.md-button} |
 
 ---
 
@@ -35,16 +35,7 @@ var response = await tmyClient.GetRadiationAndWeather(
 Console.WriteLine(response.RawResponse);
 
 ```
-**Sample Output:**
-
-| ghi | dni | dhi | azimuth | zenith | air_temp | relative_humidity | wind_speed_10m | albedo | period_end | period |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 635 | 224 | 432 | -71 | 25 | 23.5 | 84.2 | 3.5 | 0.08 | 2059-01-01T00:30:00+00:00 | PT30M |
-| 570 | 73 | 500 | -61 | 19 | 23.6 | 83.9 | 3.8 | 0.08 | 2059-01-01T01:00:00+00:00 | PT30M |
-| ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |
-| 856 | 962 | 89 | -84 | 37 | 23.8 | 78.3 | 4.3 | 0.09 | 2059-12-31T23:30:00+00:00 | PT30M |
-| 931 | 980 | 90 | -78 | 31 | 24.7 | 73.8 | 4.3 | 0.09 | 2060-01-01T00:00:00+00:00 | PT30M |
-
+No output generated for this example.
 ---
 
 ### GetRooftopPvPower
@@ -65,16 +56,7 @@ var response = await tmyClient.GetRooftopPvPower(
 Console.WriteLine(response.RawResponse);
 
 ```
-**Sample Output:**
-
-| pv_power_rooftop | period_end | period |
-| --- | --- | --- |
-| 2.435 | 2059-01-01T01:00:00+00:00 | PT1H |
-| 1.623 | 2059-01-01T02:00:00+00:00 | PT1H |
-| ... | ... | ... |
-| 2.514 | 2059-12-31T23:00:00+00:00 | PT1H |
-| 3.204 | 2060-01-01T00:00:00+00:00 | PT1H |
-
+No output generated for this example.
 ---
 
 ### GetAdvancedPvPower
@@ -93,14 +75,5 @@ var response = await tmyClient.GetAdvancedPvPower(
 Console.WriteLine(response.RawResponse);
 
 ```
-**Sample Output:**
-
-| pv_power_advanced | period_end | period |
-| --- | --- | --- |
-| 8.263 | 2059-01-01T01:00:00+00:00 | PT1H |
-| 5.517 | 2059-01-01T02:00:00+00:00 | PT1H |
-| ... | ... | ... |
-| 10 | 2059-12-31T23:00:00+00:00 | PT1H |
-| 10 | 2060-01-01T00:00:00+00:00 | PT1H |
-
+No output generated for this example.
 ---
