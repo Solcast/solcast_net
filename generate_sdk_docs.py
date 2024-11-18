@@ -5,12 +5,20 @@ import re
 import subprocess
 import hashlib
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # Paths
-SDK_PATH = "./src/Solcast/Clients"
-OUTPUT_DOCS_PATH = "./docs"
-CACHE_PATH = "./tmp/samples/cache"
-SAMPLES_PATH = "./tmp/samples"
-SOLCAST_PROJECT_PATH = "./src/Solcast/Solcast.csproj"
+SDK_PATH = os.path.join(BASE_DIR, "src", "Solcast", "Clients")
+OUTPUT_DOCS_PATH = os.path.join(BASE_DIR, "docs")
+CACHE_PATH = os.path.join(BASE_DIR, "tmp", "samples", "cache")
+SAMPLES_PATH = os.path.join(BASE_DIR, "tmp", "samples")
+SOLCAST_PROJECT_PATH = os.path.join(BASE_DIR, "src", "Solcast", "Solcast.csproj")
+
+print(f"SDK_PATH: {SDK_PATH}")
+print(f"OUTPUT_DOCS_PATH: {OUTPUT_DOCS_PATH}")
+print(f"CACHE_PATH: {CACHE_PATH}")
+print(f"SAMPLES_PATH: {SAMPLES_PATH}")
+print(f"SOLCAST_PROJECT_PATH: {SOLCAST_PROJECT_PATH}")
 
 # Ensure the sample output and cache directories exist
 os.makedirs(CACHE_PATH, exist_ok=True)
