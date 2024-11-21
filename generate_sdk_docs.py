@@ -282,13 +282,16 @@ using System;
 using System.Threading.Tasks;
 using Solcast.Clients;
 
-class Program
+namespace Solcast.GeneratedSamples
 {{
-    static async Task Main(string[] args)
+    class Program
     {{
-        var client = new {client_name}();
-        var response = await client.{method_name}({example_call});
-        Console.WriteLine(response.RawResponse);
+        static async Task Main(string[] args)
+        {{
+            var client = new {client_name}();
+            var response = await client.{method_name}({example_call});
+            Console.WriteLine(response.RawResponse);
+        }}
     }}
 }}
 """
