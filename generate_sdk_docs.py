@@ -307,7 +307,18 @@ class Program
         return output
 
     except subprocess.CalledProcessError as e:
-        print(f"Error executing example for {method_name}: {e}")
+        # Log detailed error information to the console
+        print("=" * 80)
+        print(f"ERROR: Failed to execute example for method '{method_name}'")
+        print("-" * 80)
+        print(f"Command: {e.cmd}")
+        print(f"Return Code: {e.returncode}")
+        print("Standard Output:")
+        print(e.stdout or "(No output)")
+        print("-" * 80)
+        print("Standard Error:")
+        print(e.stderr or "(No error details)")
+        print("=" * 80)
         return None
 
     finally:
