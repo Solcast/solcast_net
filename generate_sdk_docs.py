@@ -470,5 +470,47 @@ def generate_docs():
             except Exception as e:
                 print(f"Error processing {client_name}: {e}")
 
+def perform_dummy_initial_run():
+    """
+    Perform a dummy initial run to prime the .NET environment and clear startup messages.
+    """
+    temp_cs_file = os.path.join(SAMPLES_PATH, "DummyProgram.cs")
+    dummy_csproj_path = create_temp_project()
+
+    try:
+        # Create a minimal dummy C# program
+        with open(temp_cs_file, "w") as cs_file:
+            cs_file.write(
+                """
+using System;
+
+namespace Dummy
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Dummy Run Completed.");
+        }
+    }
+}
+"""
+            )
+
+        # Run the dummy program
+        subprocess.run(
+            ["dotnet", "run", "--project", dummy_csproj_path, temp_cs_file],
+            capture_output=True, text=True, check=True
+        )
+
+    except subprocess.CalledProcessError as e:
+        print("Error during dummy initial run:", e.stderr or e.stdout)
+
+    finally:
+        # Clean up the dummy file after execution
+        if os.path.exists(temp_cs_file):
+            os.remove(temp_cs_file)
+
 if __name__ == "__main__":
+    perform_dummy_initial_run()
     generate_docs()
