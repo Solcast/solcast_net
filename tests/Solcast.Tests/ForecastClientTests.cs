@@ -59,10 +59,23 @@ namespace Solcast.Tests
         }
 
         [Test]
-        public void GetForecastRadiationAndWeather_ShouldThrowException_WhenApiKeyIsMissing()
+        public void GetForecastRadiationAndWeather_ShouldThrowMissingApiKeyException_WhenApiKeyIsMissing()
         {
             // Arrange
             Environment.SetEnvironmentVariable("SOLCAST_API_KEY", null);
+
+            // Act & Assert
+            Assert.Throws<MissingApiKeyException>(() =>
+            {
+                _forecastClient = new ForecastClient();
+            });
+        }
+
+        [Test]
+        public void GetForecastRadiationAndWeather_ShouldThrowUnauthorizedApiKeyException_WhenApiKeyIsInvalid()
+        {
+            // Arrange
+            Environment.SetEnvironmentVariable("SOLCAST_API_KEY", "invalid_api_key");
             _forecastClient = new ForecastClient();
             double latitude = -33.856784;
             double longitude = 151.215297;
@@ -70,7 +83,7 @@ namespace Solcast.Tests
             string format = "json";
 
             // Act & Assert
-            Assert.ThrowsAsync<UnauthorizedAccessException>(async () =>
+            Assert.ThrowsAsync<UnauthorizedApiKeyException>(async () =>
             {
                 await _forecastClient.GetRadiationAndWeather(
                     latitude: latitude,

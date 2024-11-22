@@ -409,6 +409,7 @@ def generate_client_doc(client_name, client_file_path):
     # Continue with generating individual method documentation in the same order
     for method in methods:
         method_name = method.group("method_name")
+        url = get_url_for_method(client_name, method_name)
         if method_name not in SKIP_EXAMPLES_CODE:
             params = PARAM_PATTERN.findall(method.group("params"))
             

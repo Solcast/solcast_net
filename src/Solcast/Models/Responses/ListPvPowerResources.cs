@@ -1,5 +1,7 @@
 using Newtonsoft.Json;
 
-public class ListPvPowerResources
+namespace Solcast.Models
 {
+    public class ListPvPowerResources
+    {    }
 }

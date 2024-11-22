@@ -140,8 +140,8 @@ namespace Solcast.Clients
     {{
         public {class_name}()
         {{
-        }}{methods}
-    }}
+        }}
+{methods}    }}
 }}
 """
     return class_template
@@ -154,24 +154,66 @@ def generate_base_client():
 using System;
 using System.Net.Http;
 using System.Reflection;
+using System.Net;
 
 namespace Solcast.Clients
 {
-    public abstract class BaseClient
+    public abstract class BaseClient : IDisposable
     {
+        private bool _disposed = false;
         protected readonly HttpClient _httpClient;
 
-        protected BaseClient()
+        protected BaseClient(string baseUrl = null, IWebProxy proxy = null)
         {
-            _httpClient = new HttpClient
+            var apiKey = Environment.GetEnvironmentVariable("SOLCAST_API_KEY");
+            if (string.IsNullOrEmpty(apiKey))
             {
-                BaseAddress = new Uri(SolcastUrls.BaseUrl)
+                throw new MissingApiKeyException("The SOLCAST_API_KEY environment variable is not set.");
+            }
+
+            var httpClientHandler = new HttpClientHandler();
+            if (proxy != null)
+            {
+                httpClientHandler.Proxy = proxy;
+                httpClientHandler.UseProxy = true;
+            }
+
+            _httpClient = new HttpClient(httpClientHandler)
+            {
+                BaseAddress = new Uri(baseUrl ?? SolcastUrls.BaseUrl)
             };
-            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {Environment.GetEnvironmentVariable("SOLCAST_API_KEY")}");
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
 
             // Get the version from the assembly metadata for User-Agent
             var version = GetAssemblyVersion();
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"solcast-api-csharp-sdk/{version}");
+        }
+
+        protected void HandleUnauthorizedResponse(HttpResponseMessage response)
+        {
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                throw new UnauthorizedApiKeyException("The API key provided is invalid or unauthorized.");
+            }
+            response.EnsureSuccessStatusCode();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    _httpClient.Dispose();
+                }
+                _disposed = true;
+            }
         }
 
         private static string GetAssemblyVersion()
@@ -185,32 +227,19 @@ namespace Solcast.Clients
             return version.Split('+')[0];
         }
     }
+
+    public class MissingApiKeyException : Exception
+    {
+        public MissingApiKeyException(string message) : base(message) { }
+    }
+
+    public class UnauthorizedApiKeyException : Exception
+    {
+        public UnauthorizedApiKeyException(string message) : base(message) { }
+    }
 }
 """
     return base_client_code
-
-
-# Specific Client Generation
-def generate_specific_client_class(class_name, methods, required_usings):
-    """Generates a specific client class that inherits from the base client."""
-    usings = "\n".join([f"using {u};" for u in order_namespaces(required_usings)])
-
-    class_template = f"""
-{usings}
-
-namespace Solcast.Clients
-{{
-    public class {class_name} : BaseClient
-    {{
-        public {class_name}()
-        {{
-        }}
-
-{methods}
-    }}
-}}
-"""
-    return class_template
 
 
 def order_namespaces(namespaces, app_namespace="Solcast"):
@@ -244,7 +273,7 @@ def order_namespaces(namespaces, app_namespace="Solcast"):
 def generate_csharp_method_with_usings(endpoint, method, parameters, spec, response_type=None, context=""):
     """Generates a C# method for the given endpoint, method, and parameters, and returns necessary 'using' statements."""
 
-    required_usings = {"System", "System.Net.Http", "System.Threading.Tasks", "System.Collections.Generic", "System.Linq", "Solcast.Utilities"}
+    required_usings = {"System", "System.Net.Http", "System.Threading.Tasks", "System.Collections.Generic", "System.Linq", "Solcast.Utilities", "Solcast.Models"}
     if response_type:
         required_usings.update({"Solcast.Utilities"})
 
@@ -336,7 +365,7 @@ def generate_csharp_method_with_usings(endpoint, method, parameters, spec, respo
 
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {{
-                throw new UnauthorizedAccessException("Invalid API key.");
+                throw new UnauthorizedApiKeyException("The API key provided is invalid or unauthorized.");
             }}
 
             response.EnsureSuccessStatusCode();
@@ -353,7 +382,8 @@ def generate_csharp_method_with_usings(endpoint, method, parameters, spec, respo
                 return new ApiResponse<""" + response_type + """>(data, rawContent);
             }
             return new ApiResponse<""" + response_type + """>(null, rawContent);
-        }"""
+        }
+"""
     else:
         method_body += "            return new ApiResponse<string>(null, rawContent);\n        }"
 
@@ -426,45 +456,39 @@ def generate_xml_comment(description, indent_level=4):
         indent = ' ' * indent_level
         # Split the description into lines and prefix each with "///"
         comment_lines = "\n".join(f"{indent}/// {line}" for line in description.splitlines())
-        return f"\n\n{indent}/// <summary>\n{comment_lines}\n{indent}/// </summary>\n"
-    return "\n\n"
+        return f"\n{indent}/// <summary>\n{comment_lines}\n{indent}/// </summary>\n"
+    return "\n"
 
 
 # Generate Models for Requests and Responses
 def generate_csharp_model_class(class_name, properties, required_properties, spec):
     """Generates a C# class for a model (request or response), with appropriate using statements."""
-    class_code = f"public class {class_name}\n{{"
     required_usings = {"Newtonsoft.Json"}
+    class_code_lines = [f"    public class {class_name}", "\n    {"]
 
     for prop_name, prop_info in properties.items():
         description = prop_info.get('description', "")
-        xml_comment = generate_xml_comment(description, indent_level=4)
+        xml_comment = generate_xml_comment(description, indent_level=8)
 
-        # Check if the property is a $ref to another definition
+        # Determine property type
         if '$ref' in prop_info:
             resolved_schema = resolve_reference(spec, prop_info['$ref'])
             prop_type = resolved_schema.get('title', prop_info['$ref'].split('/')[-1])
-        elif 'type' in prop_info and prop_info['type'] == 'array' and 'items' in prop_info:
-            # Check if it's an array of objects
+        elif prop_info.get('type') == 'array' and 'items' in prop_info:
             items_info = prop_info['items']
             if '$ref' in items_info:
                 resolved_schema = resolve_reference(spec, items_info['$ref'])
                 nested_class_name = resolved_schema.get('title', items_info['$ref'].split('/')[-1])
                 prop_type = f"List<{nested_class_name}>"
-                # Ensure the correct reference is used
-                prop_type = f"List<{nested_class_name}>" if nested_class_name != "Dictionary<String,Object>" else "List<Dictionary_String_Object_>"
             else:
-                # Handle array of primitive types
                 item_type = map_openapi_type_to_csharp(items_info.get('type'), items_info.get('format'), items_info, spec)
                 prop_type = f"List<{item_type}>"
-        elif 'type' in prop_info and prop_info['type'] == 'object':
-            # Handle properties that are complex objects
-            # Map directly to a dictionary if the schema allows for arbitrary properties
+            required_usings.add("System.Collections.Generic")
+        elif prop_info.get('type') == 'object':
             if prop_info.get('additionalProperties'):
                 prop_type = "IDictionary<string, object>"
                 required_usings.add("System.Collections.Generic")
             else:
-                # Map to a nested class or dictionary if additionalProperties not defined
                 prop_type = "Dictionary<string, object>"
         else:
             prop_type = map_openapi_type_to_csharp(prop_info.get('type'), prop_info.get('format'), prop_info)
@@ -472,21 +496,21 @@ def generate_csharp_model_class(class_name, properties, required_properties, spe
         if prop_type.startswith("List<") or "Dictionary<" in prop_type:
             required_usings.add("System.Collections.Generic")
 
-        # if "?" in prop_type or "Dictionary<" in prop_type:
-        #     required_usings.add("System")
-
         prop_required = prop_name in required_properties
-        prop_code = f"{xml_comment}    [JsonProperty(\"{prop_name}\")]\n    public {prop_type} {to_pascal_case(prop_name)} {{ get; set; }}{' // Required' if prop_required else ''}"
-        class_code += prop_code
+        prop_code = f"""{xml_comment}        [JsonProperty("{prop_name}")]
+        public {prop_type} {to_pascal_case(prop_name)} {{ get; set; }}{' // Required' if prop_required else ''}"""
+        class_code_lines.append(prop_code + "\n")
 
-#     class_code += """
-#     [JsonExtensionData]
-#     public IDictionary<string, object> AdditionalData { get; set; } = new Dictionary<string, object>();
-# """
+    class_code_lines.append("    }")  # Closing class brace
+    class_code = "".join(class_code_lines)
 
-    class_code += "\n}\n"
-
-    return class_code, required_usings
+    # Wrap the class inside a namespace with extra indentation
+    namespace_code = f"""namespace Solcast.Models
+{{
+{class_code}
+}}
+"""
+    return namespace_code, required_usings
 
 
 def generate_models(spec):
@@ -707,7 +731,16 @@ def generate_aggregation_client_class(spec, endpoint_suffix='/aggregations'):
 
     # Generate the complete class code with usings and methods
     class_code = generate_csharp_class_with_usings(class_name, methods_code, all_required_usings)
+    # include using Solcast.Models
     return class_code
+
+
+def extract_class_name(class_code):
+    """Extract the class name from the C# class definition."""
+    match = re.search(r"\bclass\s+(\w+)", class_code)
+    if match:
+        return match.group(1)
+    raise ValueError("Class name could not be determined from the class code.")
 
 
 if __name__ == "__main__":
@@ -788,7 +821,8 @@ if __name__ == "__main__":
     models, all_required_usings = generate_models(spec)
     for model_type, classes in models.items():
         for class_code, required_usings in classes:
-            save_model_class_to_file(class_code, required_usings, os.path.join('src', 'Solcast', 'Models', to_pascal_case(model_type)), f"{class_code.split()[2]}.cs")
+            class_name = extract_class_name(class_code)
+            save_model_class_to_file(class_code, required_usings, os.path.join('src', 'Solcast', 'Models', to_pascal_case(model_type)), f"{class_name}.cs")
 
     # Generate and save AggregationClient class
     aggregation_client_code = generate_aggregation_client_class(spec)

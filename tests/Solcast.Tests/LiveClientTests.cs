@@ -55,18 +55,28 @@ namespace Solcast.Tests
 
             // Assert - checking if the response is in CSV format (string)
             Assert.IsInstanceOf<string>(response.RawResponse);
-            // var csvData = (string)response;
-
-            // // Basic check to ensure that the CSV has the expected headers and content
-            // Assert.IsNotEmpty(csvData);
-            // Assert.IsTrue(csvData.Contains("dni,ghi,air_temp"), "CSV headers missing or incorrect");
+            Assert.IsNotEmpty(response.RawResponse);
+            Assert.IsTrue(response.RawResponse.Contains("dni,ghi,air_temp"), "CSV headers missing or incorrect");
         }
 
         [Test, Category("Live")]
-        public void GetRadiationAndWeather_ShouldThrowUnauthorizedAccessException_WhenApiKeyIsMissing()
+        public void GetRadiationAndWeather_ShouldThrowMissingApiKeyException_WhenApiKeyIsMissing()
         {
             // Arrange: Simulate missing API key
             Environment.SetEnvironmentVariable("SOLCAST_API_KEY", null);
+
+            // Act & Assert
+            Assert.Throws<MissingApiKeyException>(() =>
+            {
+                _liveClient = new LiveClient(); // Should throw MissingApiKeyException
+            });
+        }
+
+        [Test, Category("Live")]
+        public void GetRadiationAndWeather_ShouldThrowUnauthorizedApiKeyException_WhenApiKeyIsInvalid()
+        {
+            // Arrange: Simulate an invalid API key
+            Environment.SetEnvironmentVariable("SOLCAST_API_KEY", "invalid_api_key");
             _liveClient = new LiveClient();
             double latitude = -33.856784;
             double longitude = 151.215297;
@@ -74,7 +84,7 @@ namespace Solcast.Tests
             string format = "csv";
 
             // Act & Assert
-            var ex = Assert.ThrowsAsync<UnauthorizedAccessException>(async () =>
+            var ex = Assert.ThrowsAsync<UnauthorizedApiKeyException>(async () =>
             {
                 await _liveClient.GetRadiationAndWeather(
                     latitude: latitude,
@@ -85,7 +95,7 @@ namespace Solcast.Tests
             });
 
             // Assert the exception message
-            Assert.AreEqual("Invalid API key.", ex.Message);
+            Assert.AreEqual("The API key provided is invalid or unauthorized.", ex.Message);
         }
 
         [OneTimeTearDown]

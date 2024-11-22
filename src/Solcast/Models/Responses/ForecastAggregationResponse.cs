@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-public class ForecastAggregationResponse
+namespace Solcast.Models
 {
-
-    [JsonProperty("forecasts")]
-    public List<Dictionary<string, object>> Forecasts { get; set; }
+    public class ForecastAggregationResponse
+    {
+        [JsonProperty("forecasts")]
+        public List<Dictionary<string, object>> Forecasts { get; set; }
+    }
 }

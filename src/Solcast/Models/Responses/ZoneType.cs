@@ -1,5 +1,7 @@
 using Newtonsoft.Json;
 
-public class ZoneType
+namespace Solcast.Models
 {
+    public class ZoneType
+    {    }
 }
