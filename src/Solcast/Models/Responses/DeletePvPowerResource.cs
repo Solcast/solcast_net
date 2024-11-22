@@ -1,11 +1,13 @@
 using Newtonsoft.Json;
 
-public class DeletePvPowerResource
+namespace Solcast.Models
 {
-
-    /// <summary>
-    /// The unique identifier of the resource.
-    /// </summary>
-    [JsonProperty("resource_id")]
-    public string ResourceId { get; set; } // Required
+    public class DeletePvPowerResource
+    {
+        /// <summary>
+        /// The unique identifier of the resource.
+        /// </summary>
+        [JsonProperty("resource_id")]
+        public string ResourceId { get; set; } // Required
+    }
 }

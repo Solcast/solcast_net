@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Solcast.Models;
 using Solcast.Utilities;
 
 namespace Solcast.Clients
@@ -26,7 +27,7 @@ namespace Solcast.Clients
 
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
-                throw new UnauthorizedAccessException("Invalid API key.");
+                throw new UnauthorizedApiKeyException("The API key provided is invalid or unauthorized.");
             }
 
             response.EnsureSuccessStatusCode();
@@ -54,7 +55,7 @@ namespace Solcast.Clients
 
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
-                throw new UnauthorizedAccessException("Invalid API key.");
+                throw new UnauthorizedApiKeyException("The API key provided is invalid or unauthorized.");
             }
 
             response.EnsureSuccessStatusCode();
@@ -84,7 +85,7 @@ namespace Solcast.Clients
 
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
-                throw new UnauthorizedAccessException("Invalid API key.");
+                throw new UnauthorizedApiKeyException("The API key provided is invalid or unauthorized.");
             }
 
             response.EnsureSuccessStatusCode();
@@ -114,7 +115,7 @@ namespace Solcast.Clients
 
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
-                throw new UnauthorizedAccessException("Invalid API key.");
+                throw new UnauthorizedApiKeyException("The API key provided is invalid or unauthorized.");
             }
 
             response.EnsureSuccessStatusCode();
@@ -144,7 +145,7 @@ namespace Solcast.Clients
 
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
-                throw new UnauthorizedAccessException("Invalid API key.");
+                throw new UnauthorizedApiKeyException("The API key provided is invalid or unauthorized.");
             }
 
             response.EnsureSuccessStatusCode();
@@ -172,7 +173,7 @@ namespace Solcast.Clients
 
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
-                throw new UnauthorizedAccessException("Invalid API key.");
+                throw new UnauthorizedApiKeyException("The API key provided is invalid or unauthorized.");
             }
 
             response.EnsureSuccessStatusCode();

@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-public class HistoricForecastRadiationAndWeatherResponse
+namespace Solcast.Models
 {
-
-    [JsonProperty("historic_forecasts")]
-    public List<Dictionary<string, object>> HistoricForecasts { get; set; }
+    public class HistoricForecastRadiationAndWeatherResponse
+    {
+        [JsonProperty("historic_forecasts")]
+        public List<Dictionary<string, object>> HistoricForecasts { get; set; }
+    }
 }

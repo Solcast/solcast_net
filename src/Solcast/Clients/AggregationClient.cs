@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Solcast.Models;
 using Solcast.Utilities;
 
 namespace Solcast.Clients
@@ -13,8 +14,8 @@ namespace Solcast.Clients
     {
         public AggregationClient()
         {
-        }        
-
+        }
+        
         /// <summary>
         /// Get live aggregation data for up to 7 days of data at a time for a requested collection or aggregation.
         /// </summary>
@@ -46,7 +47,7 @@ namespace Solcast.Clients
 
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
-                throw new UnauthorizedAccessException("Invalid API key.");
+                throw new UnauthorizedApiKeyException("The API key provided is invalid or unauthorized.");
             }
 
             response.EnsureSuccessStatusCode();
@@ -59,8 +60,8 @@ namespace Solcast.Clients
                 return new ApiResponse<LiveAggregationResponse>(data, rawContent);
             }
             return new ApiResponse<LiveAggregationResponse>(null, rawContent);
-        }        
-
+        }
+        
         /// <summary>
         /// Get forecast aggregation data for up to 7 days of data at a time for a requested collection or aggregation.
         /// </summary>
@@ -92,7 +93,7 @@ namespace Solcast.Clients
 
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
-                throw new UnauthorizedAccessException("Invalid API key.");
+                throw new UnauthorizedApiKeyException("The API key provided is invalid or unauthorized.");
             }
 
             response.EnsureSuccessStatusCode();

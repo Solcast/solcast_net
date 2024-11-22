@@ -1,8 +1,10 @@
 using Newtonsoft.Json;
 
-public class GetPvUtilitySiteRapidForecastMeasurements
+namespace Solcast.Models
 {
-
-    [JsonProperty("resource_id")]
-    public string ResourceId { get; set; }
+    public class GetPvUtilitySiteRapidForecastMeasurements
+    {
+        [JsonProperty("resource_id")]
+        public string ResourceId { get; set; }
+    }
 }

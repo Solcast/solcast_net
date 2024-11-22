@@ -36,7 +36,7 @@ Console.WriteLine(response.RawResponse);
 
 ### GetPvPowerSite
 **Parameters:**
-[resourceId](https://docs.solcast.com.au/#9692eaa6-9f45-4062-89d2-304dded3ca3a "(string): The unique identifier of the resource. (Required)")
+[resourceId](https://docs.solcast.com.au/#101c6f51-b039-47c3-80b4-2285b560afe6 "(string): The unique identifier of the resource. (Required)")
 
 **Example Usage:**
 ```csharp

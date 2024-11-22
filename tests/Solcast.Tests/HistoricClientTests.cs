@@ -61,22 +61,15 @@ namespace Solcast.Tests
         }
 
         [Test]
-        public void GetHistoricRadiationAndWeather_ShouldThrowException_WhenApiKeyIsMissing()
+        public void GetHistoricRadiationAndWeather_ShouldThrowMissingApiKeyException_WhenApiKeyIsMissing()
         {
             // Arrange
             Environment.SetEnvironmentVariable("SOLCAST_API_KEY", null);
-            _historicClient = new HistoricClient();
 
             // Act & Assert
-            Assert.ThrowsAsync<UnauthorizedAccessException>(async () =>
+            Assert.Throws<MissingApiKeyException>(() =>
             {
-                await _historicClient.GetRadiationAndWeather(
-                    latitude: -33.856784,
-                    longitude: 151.215297,
-                    start: "2022-06-01T06:00",
-                    duration: "P1D",
-                    format: "json"
-                );
+                _historicClient = new HistoricClient();
             });
         }
 
@@ -107,10 +100,10 @@ namespace Solcast.Tests
         }
 
         [Test]
-        public void GetHistoricRooftopPvPower_ShouldThrowException_WhenApiKeyIsMissing()
+        public void GetHistoricRooftopPvPower_ShouldThrowUnauthorizedApiKeyException_WhenApiKeyIsInvalid()
         {
             // Arrange
-            Environment.SetEnvironmentVariable("SOLCAST_API_KEY", null);
+            Environment.SetEnvironmentVariable("SOLCAST_API_KEY", "invalid_api_key");
             _historicClient = new HistoricClient();
             double latitude = -33.856784;
             double longitude = 151.215297;
@@ -120,7 +113,7 @@ namespace Solcast.Tests
             string format = "json";
 
             // Act & Assert
-            Assert.ThrowsAsync<UnauthorizedAccessException>(async () =>
+            Assert.ThrowsAsync<UnauthorizedApiKeyException>(async () =>
             {
                 await _historicClient.GetRooftopPvPower(
                     latitude: latitude,
@@ -153,29 +146,6 @@ namespace Solcast.Tests
             // Assert
             Assert.IsNotNull(response);
             // Additional assertions based on response data structure
-        }
-
-        [Test]
-        public void GetHistoricAdvancedPvPower_ShouldThrowException_WhenApiKeyIsMissing()
-        {
-            // Arrange
-            Environment.SetEnvironmentVariable("SOLCAST_API_KEY", null);
-            _historicClient = new HistoricClient();
-            string resourceId = UnmeteredLocations.Locations["Sydney Opera House"].ResourceId;
-            string start = "2022-06-01T06:00";
-            string duration = "P1D";
-            string format = "json";
-
-            // Act & Assert
-            Assert.ThrowsAsync<UnauthorizedAccessException>(async () =>
-            {
-                await _historicClient.GetAdvancedPvPower(
-                    resourceId: resourceId,
-                    start: start,
-                    duration: duration,
-                    format: format
-                );
-            });
         }
 
         [OneTimeTearDown]
