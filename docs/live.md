@@ -35,16 +35,7 @@ var response = await liveClient.GetRadiationAndWeather(
 Console.WriteLine(response.RawResponse);
 
 ```
-**Sample Output:**
-
-| air_temp | dni | ghi | period_end | period |
-| --- | --- | --- | --- | --- |
-| 23 | 941 | 1029 | 2024-11-22T02:30:00Z | PT30M |
-| 23 | 943 | 1039 | 2024-11-22T02:00:00Z | PT30M |
-| ... | ... | ... | ... | ... |
-| 22 | 915 | 1000 | 2024-11-20T03:00:00Z | PT30M |
-| 22 | 919 | 1027 | 2024-11-20T02:30:00Z | PT30M |
-
+No output generated for this example.
 ---
 
 ### GetRooftopPvPower
@@ -65,16 +56,7 @@ var response = await liveClient.GetRooftopPvPower(
 Console.WriteLine(response.RawResponse);
 
 ```
-**Sample Output:**
-
-| pv_power_rooftop | period_end | period |
-| --- | --- | --- |
-| 3.946 | 2024-11-22T02:30:00Z | PT30M |
-| 3.982 | 2024-11-22T02:00:00Z | PT30M |
-| ... | ... | ... |
-| 3.873 | 2024-11-20T03:00:00Z | PT30M |
-| 3.97 | 2024-11-20T02:30:00Z | PT30M |
-
+No output generated for this example.
 ---
 
 ### GetAdvancedPvPower
@@ -93,14 +75,5 @@ var response = await liveClient.GetAdvancedPvPower(
 Console.WriteLine(response.RawResponse);
 
 ```
-**Sample Output:**
-
-| pv_power_advanced | period_end | period |
-| --- | --- | --- |
-| 10 | 2024-11-22T02:30:00Z | PT30M |
-| 10 | 2024-11-22T02:00:00Z | PT30M |
-| ... | ... | ... |
-| 1.612 | 2024-11-15T03:00:00Z | PT30M |
-| 2.638 | 2024-11-15T02:30:00Z | PT30M |
-
+No output generated for this example.
 ---
