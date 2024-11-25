@@ -58,6 +58,8 @@ export SOLCAST_API_KEY="{your_api_key}"
 ```
 
 ## Basic Usage
+![Alt text for the image](examples/csharp.svg)
+
 ### Retrieving Live Radiation and Weather Data
 ```csharp
 using Solcast.Clients;
