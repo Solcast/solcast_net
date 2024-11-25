@@ -169,6 +169,19 @@ var response = await pvClient.GetPvPowerSite("ba75-e17a-7374-95ed");
 - `PutPvPowerSite`: Overwrites an existing PV power site specifications.
 - `DeletePvPowerSite`: Deletes an existing PV power site.
 
+## Optional: Suppressing SDK Update Checks
+To suppress the SDK's automatic update check, set the SUPPRESS_SDK_UPDATE_CHECK environment variable to true:
+
+Windows PowerShell:
+```powershell
+$env:SUPPRESS_SDK_UPDATE_CHECK = "true"
+```
+
+Linux/macOS:
+```bash
+export SUPPRESS_SDK_UPDATE_CHECK="true"
+```
+When this flag is set, the SDK will skip checking for new versions during runtime. This is particularly useful automated environments where update messages are not necessary.
 
 ## Contributing
 We welcome contributions to this SDK! If you'd like to contribute, please submit a Pull Request or open an issue with any suggestions or bug reports.
