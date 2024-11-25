@@ -37,11 +37,11 @@ Console.WriteLine(response.RawResponse);
 ```
 **Sample Output:**
 
-| ghi | dni | dhi | azimuth | zenith | air_temp | relative_humidity | wind_speed_10m | albedo | period_end | period |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 635 | 224 | 432 | -71 | 25 | 23.5 | 84.2 | 3.5 | 0.08 | 2059-01-01T00:30:00+00:00 | PT30M |
-| 570 | 73 | 500 | -61 | 19 | 23.6 | 83.9 | 3.8 | 0.08 | 2059-01-01T01:00:00+00:00 | PT30M |
-| ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |
+| A new version of the SDK is available: v1.0.2. |
+| --- |
+| To update |  run the following command: |
+|     dotnet add package Solcast --version 1.0.2 |
+| ... |
 | 856 | 962 | 89 | -84 | 37 | 23.8 | 78.3 | 4.3 | 0.09 | 2059-12-31T23:30:00+00:00 | PT30M |
 | 931 | 980 | 90 | -78 | 31 | 24.7 | 73.8 | 4.3 | 0.09 | 2060-01-01T00:00:00+00:00 | PT30M |
 
@@ -67,11 +67,11 @@ Console.WriteLine(response.RawResponse);
 ```
 **Sample Output:**
 
-| pv_power_rooftop | period_end | period |
-| --- | --- | --- |
-| 2.435 | 2059-01-01T01:00:00+00:00 | PT1H |
-| 1.623 | 2059-01-01T02:00:00+00:00 | PT1H |
-| ... | ... | ... |
+| A new version of the SDK is available: v1.0.2. |
+| --- |
+| To update |  run the following command: |
+|     dotnet add package Solcast --version 1.0.2 |
+| ... |
 | 2.514 | 2059-12-31T23:00:00+00:00 | PT1H |
 | 3.204 | 2060-01-01T00:00:00+00:00 | PT1H |
 
@@ -95,11 +95,11 @@ Console.WriteLine(response.RawResponse);
 ```
 **Sample Output:**
 
-| pv_power_advanced | period_end | period |
-| --- | --- | --- |
-| 8.263 | 2059-01-01T01:00:00+00:00 | PT1H |
-| 5.517 | 2059-01-01T02:00:00+00:00 | PT1H |
-| ... | ... | ... |
+| A new version of the SDK is available: v1.0.2. |
+| --- |
+| To update |  run the following command: |
+|     dotnet add package Solcast --version 1.0.2 |
+| ... |
 | 10 | 2059-12-31T23:00:00+00:00 | PT1H |
 | 10 | 2060-01-01T00:00:00+00:00 | PT1H |
 

@@ -37,13 +37,13 @@ Console.WriteLine(response.RawResponse);
 ```
 **Sample Output:**
 
-| air_temp | dni | ghi | period_end | period |
-| --- | --- | --- | --- | --- |
-| 23 | 936 | 1003 | 2024-11-22T03:00:00Z | PT30M |
-| 23 | 928 | 962 | 2024-11-22T03:30:00Z | PT30M |
-| ... | ... | ... | ... | ... |
-| 26 | 941 | 1037 | 2024-11-24T02:00:00Z | PT30M |
-| 26 | 939 | 1027 | 2024-11-24T02:30:00Z | PT30M |
+| A new version of the SDK is available: v1.0.2. |
+| --- |
+| To update |  run the following command: |
+|     dotnet add package Solcast --version 1.0.2 |
+| ... |
+| 28 | 970 | 1036 | 2024-11-27T02:00:00Z | PT30M |
+| 28 | 963 | 1025 | 2024-11-27T02:30:00Z | PT30M |
 
 ---
 
@@ -67,13 +67,13 @@ Console.WriteLine(response.RawResponse);
 ```
 **Sample Output:**
 
-| pv_power_rooftop | period_end | period |
-| --- | --- | --- |
-| 3.851 | 2024-11-22T03:00:00Z | PT30M |
-| 3.7 | 2024-11-22T03:30:00Z | PT30M |
-| ... | ... | ... |
-| 3.915 | 2024-11-24T02:00:00Z | PT30M |
-| 3.879 | 2024-11-24T02:30:00Z | PT30M |
+| A new version of the SDK is available: v1.0.2. |
+| --- |
+| To update |  run the following command: |
+|     dotnet add package Solcast --version 1.0.2 |
+| ... |
+| 3.856 | 2024-11-27T02:00:00Z | PT30M |
+| 3.82 | 2024-11-27T02:30:00Z | PT30M |
 
 ---
 
@@ -95,12 +95,12 @@ Console.WriteLine(response.RawResponse);
 ```
 **Sample Output:**
 
-| pv_power_advanced | period_end | period |
-| --- | --- | --- |
-| 10 | 2024-11-22T03:00:00Z | PT30M |
-| 10 | 2024-11-22T03:30:00Z | PT30M |
-| ... | ... | ... |
-| 7.991 | 2024-11-29T02:00:00Z | PT30M |
-| 7.977 | 2024-11-29T02:30:00Z | PT30M |
+| A new version of the SDK is available: v1.0.2. |
+| --- |
+| To update |  run the following command: |
+|     dotnet add package Solcast --version 1.0.2 |
+| ... |
+| 9.74 | 2024-12-02T02:00:00Z | PT30M |
+| 9.959 | 2024-12-02T02:30:00Z | PT30M |
 
 ---
