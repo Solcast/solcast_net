@@ -34,13 +34,13 @@ Console.WriteLine(response.RawResponse);
 ```
 **Sample Output:**
 
-| PvEstimate | Percentage | PeriodEnd | Period |
-| --- | --- | --- | --- |
-| 3080.0162 | 59.7 | 2024-11-22T02:00:00+00:00 | PT30M |
-| 3095.0167 | 59.9 | 2024-11-22T01:30:00+00:00 | PT30M |
-| ... | ... | ... | ... |
-| 3394.1388 | 65.9 | 2024-11-15T03:00:00+00:00 | PT30M |
-| 3434.4162 | 66.7 | 2024-11-15T02:30:00+00:00 | PT30M |
+| A new version of the SDK is available: v1.0.2. |
+| --- |
+| To update |  run the following command: |
+|     dotnet add package Solcast --version 1.0.2 |
+| ... |
+| 2298.5385 | 44.6 | 2024-11-18T04:00:00+00:00 | PT30M |
+| 2285.1507 | 44.3 | 2024-11-18T03:30:00+00:00 | PT30M |
 
 ---
 
@@ -64,12 +64,12 @@ Console.WriteLine(response.RawResponse);
 ```
 **Sample Output:**
 
-| PvEstimate | Percentage | PeriodEnd | Period |
-| --- | --- | --- | --- |
-| 3027.2602 | 58.6 | 2024-11-22T02:30:00+00:00 | PT30M |
-| 2967.085 | 57.5 | 2024-11-22T03:00:00+00:00 | PT30M |
-| ... | ... | ... | ... |
-| 2862.702 | 55.3 | 2024-11-29T01:30:00+00:00 | PT30M |
-| 2905.5262 | 56.2 | 2024-11-29T02:00:00+00:00 | PT30M |
+| A new version of the SDK is available: v1.0.2. |
+| --- |
+| To update |  run the following command: |
+|     dotnet add package Solcast --version 1.0.2 |
+| ... |
+| 2384.0242 | 46.0 | 2024-12-02T02:30:00+00:00 | PT30M |
+| 2424.9007 | 46.8 | 2024-12-02T03:00:00+00:00 | PT30M |
 
 ---
