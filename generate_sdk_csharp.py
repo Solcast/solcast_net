@@ -167,7 +167,7 @@ namespace Solcast.Clients
 
         protected BaseClient(string baseUrl = null, IWebProxy proxy = null, bool checkForUpdates = true)
         {
-            if (checkForUpdates && !_updateChecked)
+            if (checkForUpdates && !_updateChecked && !IsSdkUpdateCheckSuppressed())
             {
                 CheckForUpdates();
                 _updateChecked = true;
@@ -194,6 +194,12 @@ namespace Solcast.Clients
 
             var version = GetAssemblyVersion();
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"solcast-api-csharp-sdk/{version}");
+        }
+
+        private static bool IsSdkUpdateCheckSuppressed()
+        {
+            var suppressFlag = Environment.GetEnvironmentVariable("SUPPRESS_SDK_UPDATE_CHECK");
+            return suppressFlag?.Equals("true", StringComparison.OrdinalIgnoreCase) == true;
         }
 
         public static void CheckForUpdates()
