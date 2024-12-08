@@ -25,10 +25,10 @@ nav:
 extra:
   alternate:
     - name: Python
-      link: https://solcast.github.io/solcast-api-python-sdk/
+      link: /solcast-api-python-sdk/
       lang: python
     - name: C#
-      link: /solcast_net/
+      link: /solcast-api-csharp-sdk/
       lang: csharp
 
 markdown_extensions:
